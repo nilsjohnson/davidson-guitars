@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+#/build not ignorning for now so I can post on git pages
 
 # misc
 .DS_Store

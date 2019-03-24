@@ -11,13 +11,13 @@ body
 {
   font-family: "Times New Roman", Georgia, Serif;
  /* background-color: black !important;*/
- background-image: url('img/bg.png');
+ background-image: url('../img/bg.png');
 }
 
 h1, h2, h3, h4, h5, h6 
 {
-  font-family: "Playfair Display";
-  letter-spacing: 5px;
+  font-family: "";
+  letter-spacing: 2px;
 }
 
 ul
@@ -48,5 +48,10 @@ nav
 .header
 {
   color: white;
+}
+
+.inline
+{
+  flex-direction: row;
 }
 

@@ -1,41 +1,22 @@
 import React, { Component } from 'react';
-import './App.scss';
-import sample from './img/sample.jpg';
+import '../css/app.scss';
+import sample from '../img/sample.jpg';
+import Header from '../component/Header.jsx';
+import Navbar from '../component/Navbar.jsx';
 
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div className="header">
-          <h1 className="text-center">Davidson Guitars</h1>
-          <h3 className="text-center"> 62A Main St. Northfield, MA 01260 | (413) 498-4400</h3>
-        </div>
-        <nav class="navbar navbar-expand-lg rounded">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-        
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-               <a class="nav-link" href="#">Services</a>
-              </li>
-              <li class="nav-item">
-               <a class="nav-link active" href="#">Blog</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+        <Header/>
+        <Navbar/>
 
         <div className="container"> <hr/> 
           <div className="row">
             <div className="col-md-6">
               <img src={sample} className="img-fluid border"/>
+              <h5>Just a Sample Image</h5>
             </div>
 
             <div className="col-md-6">
@@ -67,6 +48,23 @@ class App extends Component {
             </div>
           </div>
         </div>
+
+        <div className="container"> <hr/> 
+          <div className="row">
+            <div class="mx-auto d-block">
+              <a href="https://reverb.com/shop/nils-guitars-and-mandolins"><img alt="Shop My Store on Reverb" src="https://static.reverb-assets.com/assets/shops/buttons/215x65-black-en-94305bd2b54772f44e046db82a7837d2.png" /></a>
+            </div>
+          </div>
+          <h5 className="text-center">
+            Consider giving your your shop a store online! 
+          </h5>
+          <p className="text-center">
+            Although you cant really sell lutherie services here, it increases visibility and can direct people to your shop.
+          </p>
+          <hr/>
+        </div>
+
+
        
         <footer>
           <p className="text-center">Davidson Guitars - 2019 &copy; </p> 

@@ -6,7 +6,7 @@ class Reverb extends Component {
     return (
       <div className="container"> <hr/> 
           <div className="row">
-            <div class="mx-auto d-block">
+            <div className="mx-auto d-block">
               <a href="https://reverb.com/shop/nils-guitars-and-mandolins"><img alt="Shop My Store on Reverb" src="https://static.reverb-assets.com/assets/shops/buttons/215x65-black-en-94305bd2b54772f44e046db82a7837d2.png" /></a>
             </div>
           </div>

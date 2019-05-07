@@ -18,8 +18,8 @@ class Navbar extends Component {
           <li className="nav-item active">
             <a className="nav-link" href="hi">Services</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Blog</a>
+          <li className="nav-item active">
+            <a className="nav-link" href="/blog.">Blog</a>
           </li>
         </ul>
       </div>
@@ -29,6 +29,3 @@ class Navbar extends Component {
 }
 
 export default Navbar;
-
-
-

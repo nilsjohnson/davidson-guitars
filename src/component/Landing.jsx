@@ -4,6 +4,32 @@ import sample from '../img/sample.jpg';
 
 
 class Landing extends Component {
+  constructor(props) {
+    super(props);
+
+    this.setBlogPosts = this.setBlogPosts.bind(this);
+  }
+
+  setBlogPosts(data) {
+    console.log(data);
+  }
+
+  componentDidMount() {
+    let callback = this.setBlogPosts;
+
+    fetch('/api/getBlogPosts').then(function(response){
+      if(response.ok) {
+        console.log("ok");
+        response.json().then(data => {
+          callback(data);
+        })
+      }
+      else {
+        console.log("not ok");
+      }
+    });
+}
+
   render() {
     return (
       <div className="container"> <hr/> 

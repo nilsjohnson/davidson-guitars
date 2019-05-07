@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './app/Home';
+import Home from './app/Home.jsx';
 import Blog from './app/Blog.jsx';
+import Admin from './app/Admin.jsx';
 import { BrowserRouter, Route } from 'react-router-dom'
 
 
@@ -10,6 +11,7 @@ ReactDOM.render((
 		<div>
 			<Route path="/" component={Home} exact/>
 			<Route path="/blog" component={Blog}/>
+			<Route path="/admin" component={Admin}/>
 		</div>
 	</BrowserRouter>
 	), document.getElementById('root'));

@@ -25,6 +25,7 @@ class Admin extends Component {
 			reverbHeader: getString("reverbHeader"),
 			reverbDescription: getString("reverbDescription"),
 			directions: getString("directions"),
+			services: getString("services"),
 			message: getString("message")
 		}
 	}
@@ -44,7 +45,8 @@ class Admin extends Component {
 			reverbHeader,
 			reverbDescription,
 			message,
-			directions
+			directions,
+			services
 		} = this.state;
 
 		let Strings = {
@@ -61,7 +63,8 @@ class Admin extends Component {
 			reverbHeader: reverbHeader,
 			reverbDescription: reverbDescription,
 			message: message,
-			directions: directions
+			directions: directions,
+			services: services
 		}
 
 		updateStrings(Strings, password);
@@ -133,6 +136,10 @@ class Admin extends Component {
 
 	updateMessage = (event) => {
 		this.setState({message: event.target.value});
+	}
+
+	updateServices = (event) => {
+		this.setState({services: event.target.value});
 	}
 
 
@@ -260,6 +267,16 @@ class Admin extends Component {
 	           				 	type="text" className="form-control" id="event-name"
 	           				 	onChange={this.updateDirections}
 	           				/>
+	          			</div>
+					</div>
+
+					<div className="form-group row">
+	          			<label className="col-sm-3 col-form-label">Services (html):</label>
+	          			<div className="col-sm-9">
+	           				 <textarea
+	           				 	defaultValue={getString("services")}
+	           				 	type="text" className="form-control" id="event-name"
+	           				 	onChange={this.updateServices}/>
 	          			</div>
 					</div>
 

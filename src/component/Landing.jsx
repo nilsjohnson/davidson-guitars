@@ -28,8 +28,8 @@ class Landing extends Component {
 
     let message;
     if(getString("message") != "") {
-      message =  <div className="container"> <hr/>
-          <h4>{getString("message")}</h4>
+      message =  <div className="trans container"> <hr/>
+          <h4 className="text-center">{getString("message")}</h4>
         </div>;
     }
     return (

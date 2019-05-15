@@ -10,7 +10,7 @@ class Blerb extends Component {
                 <p dangerouslySetInnerHTML={{__html: getString("description")}}>
                 </p>
                 <hr/>
-                </div>); 
+            </div>); 
 	}
 }
 

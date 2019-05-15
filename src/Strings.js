@@ -4,7 +4,6 @@ const fetchStrings = function (callback) {
 	fetch(`/api/strings`).then(function(response){
 		if(response.ok) {
 			response.json().then(data => {
-				//console.log(data);
 				Strings = JSON.parse(data);
 				callback();
 			});

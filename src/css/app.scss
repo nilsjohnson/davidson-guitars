@@ -35,7 +35,7 @@ footer
   background: rgba(255,255,255,0.9);
 }
 
-.container
+.trans
 {
   background: rgba(255,255,255,0.9);
 }
@@ -53,5 +53,28 @@ nav
 .inline
 {
   flex-direction: row;
+}
+
+.dead-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 200px;
+  border: 1px solid #9C9C9C;
+  background-color: rgba(255,255,255,0.9);
+}
+#login #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
 }
 

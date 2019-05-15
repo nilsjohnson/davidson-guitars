@@ -1,0 +1,19 @@
+{
+  "name": "Davidson Guitars",
+  "header": "High Quality Guitar Repair and Restoration",
+  "description": "Owen Davidson is a professional luthier with 37 years of experience designing, constructing, repairing and adjusting acoustic and electric guitars, basses and other fretted instrument. Additionally, Owen has extensive knowledge and experience of instruments from many ethnic traditions too.  Please see <a href=\"/services\">services </a> for more information.",
+  "hours": [
+    "Tues-Fri | 10:00 - 5:00",
+    "Sat | 10:00 - 4:00",
+    "Sun-Mon | Closed"
+  ],
+  "email": "owen@davidsonguitars.com",
+  "phoneNum": "(413) 498-4400",
+  "addr_1": "62A Main St.",
+  "addr_2": "Northfield, MA 01260",
+  "footer": "Davidson Guitars - 2019 ©",
+  "reverbHeader": "Check out current inventory online!",
+  "reverbDescription": "Guitars For Sale!",
+  "message": "",
+  "directions": "Located right beind the Northfield Creamie and next to Mims Market. 12 Minutes from I90. Please park out back."
+}

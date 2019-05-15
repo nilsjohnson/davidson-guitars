@@ -2,10 +2,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
-const shell = require('shelljs');
 var fs = require('fs'); 
-let password = "pass123$";
+let password;
 
+function getPassword() {
+	if(password) {
+		return password;
+	}
+	else {
+		return fs.readFileSync('password.txt').toString();
+	}
+}
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './build')));
@@ -31,6 +38,7 @@ function readStrings() {
 		}
 		else {
 			Strings = data;
+			console.log(data);
 			if(!running) {
 				startServer();
 				running = true;
@@ -59,7 +67,9 @@ app.get('/api/strings', function(req, res) {
 to make sure its the correct user
 */
 app.post('/api/authenticate', function(req, res) {
-	if(req.body.password === password) {
+	console.log(req.body.password);
+	console.log(getPassword());
+	if(req.body.password === getPassword()) {
 		res.json({status: 'true'});
 	} 
 	else {
@@ -72,16 +82,17 @@ app.post('/api/authenticate', function(req, res) {
 to update string resources
 */
 app.post('/api/updateStrings', function(req, res) {
-	console.log(req.body);
-	if(req.body.password === password) {
-		console.log("Sucessful string update, " + new Date());
+	if(req.body.password === getPassword()) {
 		req.body.password = "";
-		writeObject(req.body);
-		readStrings();
+		writeObject(req.body.data);
+		console.log(req.body.data);
+		Strings = req.body.data;
+		console.log("Sucessful string update, " + new Date());
 	}
 	else {
 		console.log("someone hit this api with wrong password!, " + new Date());
 	}
+	res.json({result: "Update Sucessful!"})
 	
 });
 

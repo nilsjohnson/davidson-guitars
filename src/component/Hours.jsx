@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../Strings.js';
+import {getString} from '../strings.js';
 
 class Hours extends Component {		
 	render() {

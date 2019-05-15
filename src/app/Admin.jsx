@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import '../css/app.scss';
-import {getString, updateStrings, postData } from '../Strings';
+import {getString, updateStrings, postData } from '../strings';
 import PwModal from '../component/PwModal.jsx';
 import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
@@ -32,7 +33,6 @@ class Admin extends Component {
 
 	submitUpdate = () => {
 		const {
-			password,
 			name,
 			header,
 			description,
@@ -49,8 +49,7 @@ class Admin extends Component {
 			services
 		} = this.state;
 
-		let Strings = {
-			password: password,
+		let strings = {
 			name: name,
 			header: header,
 			description: description,
@@ -67,7 +66,12 @@ class Admin extends Component {
 			services: services
 		}
 
-		updateStrings(Strings, password);
+		//updateStrings(Strings, password);
+		postData('/api/updateStrings', {data: strings, password: this.state.password})
+			.then(data => alert(data.result))
+			.catch(err => console.log(error));
+
+		 this.props.history.push('/');	
 	}
 
 	setAuthenticated = (password) => {

@@ -5,7 +5,7 @@ import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
 import DAO from '../data/DAO.js';
 import Blerb from './Blerb.jsx';
-import {getString, Strings} from '../Strings.js';
+import {getString, Strings} from '../strings.js';
 
 
 class Landing extends Component {

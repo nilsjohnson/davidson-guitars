@@ -5,7 +5,7 @@ import Blog from './app/Blog.jsx';
 import Admin from './app/Admin.jsx';
 import Services from './app/Services.jsx';
 import { BrowserRouter, Route } from 'react-router-dom'
-import {getString, fetchStrings} from './Strings.js';
+import {getString, fetchStrings} from './strings.js';
 
 let render = function() {
 	ReactDOM.render((

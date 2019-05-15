@@ -71,10 +71,16 @@ nav
   border: 1px solid #9C9C9C;
   background-color: rgba(255,255,255,0.9);
 }
+
 #login #login-row #login-column #login-box #login-form {
   padding: 20px;
 }
+
 #login #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+
+.error {
+  background-color: red;
 }
 

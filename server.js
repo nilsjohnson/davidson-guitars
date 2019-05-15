@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const shell = require('shelljs');
 var fs = require('fs'); 
+let password = "pass123$";
 
 
 app.use(bodyParser.json());
@@ -58,17 +59,12 @@ app.get('/api/strings', function(req, res) {
 to make sure its the correct user
 */
 app.post('/api/authenticate', function(req, res) {
-	console.log("body: " + req.body);
-	console.log("pw: " + req.body.password);
-	if(req.body.password === "pass") {
-		console.log("correct pw");
+	if(req.body.password === password) {
 		res.json({status: 'true'});
 	} 
 	else {
-		console.log("incorrect pw");
 		res.json({status: 'false'});
 	}
-	
 });
 
 
@@ -76,8 +72,17 @@ app.post('/api/authenticate', function(req, res) {
 to update string resources
 */
 app.post('/api/updateStrings', function(req, res) {
-	writeObject(req.body);
-	readStrings();
+	console.log(req.body);
+	if(req.body.password === password) {
+		console.log("Sucessful string update, " + new Date());
+		req.body.password = "";
+		writeObject(req.body);
+		readStrings();
+	}
+	else {
+		console.log("someone hit this api with wrong password!, " + new Date());
+	}
+	
 });
 
 /*

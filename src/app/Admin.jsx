@@ -10,6 +10,7 @@ class Admin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			invalidPassword: false,
 			password: "",
 			authenticated: false,
 			name: getString("name"),
@@ -30,6 +31,7 @@ class Admin extends Component {
 
 	submitUpdate = () => {
 		const {
+			password,
 			name,
 			header,
 			description,
@@ -46,6 +48,7 @@ class Admin extends Component {
 		} = this.state;
 
 		let Strings = {
+			password: password,
 			name: name,
 			header: header,
 			description: description,
@@ -61,25 +64,18 @@ class Admin extends Component {
 			directions: directions
 		}
 
-		updateStrings(Strings);
+		updateStrings(Strings, password);
 	}
 
-	nothing = (event) => {
-		event.preventDefault();
-		
-		postData('/api/authenticate', {password: this.state.password})
-  			.then(data => this.setAuthenticated(data.status)) // JSON-string from `response.json()` call
-  			.catch(error => console.error(error));
+	setAuthenticated = (password) => {
+		this.setState({authenticated: true, password: password});
 	}
 
-	setAuthenticated = (value) => {
-		if(value === "true") {
-			this.setState({authenticated: true})
-		}
+	setError = (val) => {
+		this.setState({invalidPassword: val});
 	}
 
 	setPassword = (event) => {
-	
 		this.setState({password: event.target.value});
 	
 	}
@@ -145,8 +141,7 @@ class Admin extends Component {
 		if(!this.state.authenticated) {
 			return ( 
 				<PwModal
-					authenticate={this.nothing}
-					setPw={this.setPassword}/>
+					setAuthenticated={this.setAuthenticated}/>
 				);
 		}
 

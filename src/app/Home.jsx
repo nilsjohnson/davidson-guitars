@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import Header from '../component/Header.jsx';
 import Navbar from '../component/Navbar.jsx';
 import Landing from '../component/Landing.jsx';
-import Footer from '../component/Footer.jsx';
 import Reverb from '../component/Reverb.jsx';
+import Header from '../component/Header.jsx';
+import Footer from '../component/Footer.jsx';
 
 
-class App extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
         <Header/>
-        <Navbar/>
+        <Navbar />
         <Landing/>
-
-        <Reverb/>
-
-       
+        <Reverb />
         <Footer/>
-
       </div>
     );
   }
 }
 
-export default App;
+export default Home;

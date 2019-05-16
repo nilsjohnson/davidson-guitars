@@ -1,5 +1,5 @@
 {
-  "name": "Owen Davidson Guitars",
+  "name": "Davidson Guitars",
   "header": "Guitar Repair and Restoration",
   "description": "Owen Davidson is a professional luthier with 37 years of experience designing, constructing, repairing and adjusting acoustic and electric guitars, basses and other fretted instrument. Additionally, Owen has extensive knowledge and experience of instruments from many ethnic traditions too.  Please see <a href=\"/services\">services </a> for more information.",
   "hours": [
@@ -16,5 +16,6 @@
   "reverbDescription": "Guitars For Sale!",
   "message": "",
   "directions": "Located behind the Northfield Creamie and next to Mims Market. 7 Minutes from I-90.",
-  "services": ""
+  "services": "<div className=\"trans container\"><hr/>\n    \t\t<h2 className=\"text-center\">Lutherie Services</h2>\n    \t\t<hr/>\n    \t\t<div className=\"row\">\n    \t\t\t<div className =\"col-sm-6\">\n    \t\t\t\t<img className=\"img-fluid border rounded\" src=\"owen.jpg\"/>\n    \t\t\t\t<h5>Owen In The Shop</h5>\n    \t\t\t</div>\n    \t\t\t<div className=\"col-sm-6\">\n    \t\t\t\t<h4>Instrument Services</h4>\n    \t\t\t\t<ul>\n    \t\t\t\t\t<li><strong>Acoustic and Electric Guitar Setup</strong> - action, truss rods, intonation, etc.</li>\n    \t\t\t\t\t<li><strong>Pickup Installation</strong> - for electric and acoustic</li>\n    \t\t\t\t\t<li><strong>Fretwork</strong> - leveling, polishing, end dressing, etc.</li>\n    \n    \t\t\t\t</ul>\n\n    \t\t\t\t<h4>Repairs</h4>\n    \t\t\t\t<ul>\n    \t\t\t\t\t<li><strong>Bridge Regluing</strong> - steel string, classical, 12 string</li>\n    \t\t\t\t\t<li><strong>Crack Repair</strong> - for cracks in soundboards, sides, backs, etc.</li>\n    \t\t\t\t\t<li><strong>Electronic Repair</strong> - output jacks, pots, general wiring issues, etc.</li>\n    \t\t\t\t\t<li><strong>Neck Resets</strong> - for dovetails, bolt ons, mortis/tenons, etc.</li>\n    \t\t\t\t\t<li><strong>Broken Necks, Pegheads</strong> - cracked necks, pegheads, healblocks, etc.</li>\n    \t\t\t\t</ul>\n    \t\t\t\t<h4>Restorations</h4>\n    \t\t\t\t<ul>\n    \t\t\t\t\t<li><strong>Knowlegable Evaluations</strong> - restore your instrument appropriatly</li>\n    \t\t\t\t\t<li><strong>Accurate Part Replication</strong> - bridges, fingerboards, binding, rosettes, etc.</li>\n    \t\t\t\t\t<li><strong>Refinishing</strong> - french polishing, lacquers, touch-ups, etc.</li>\n    \t\t\t\t</ul>\n    \t\t\t</div>\n    \t\t</div>\n    \t</div>\t",
+  "reverbLink": "https://www.reverb.com"
 }

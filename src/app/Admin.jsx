@@ -46,7 +46,8 @@ class Admin extends Component {
 			reverbDescription,
 			message,
 			directions,
-			services
+			services,
+			reverbLink
 		} = this.state;
 
 		let strings = {
@@ -63,7 +64,8 @@ class Admin extends Component {
 			reverbDescription: reverbDescription,
 			message: message,
 			directions: directions,
-			services: services
+			services: services,
+			reverbLink: reverbLink
 		}
 
 		//updateStrings(Strings, password);
@@ -146,7 +148,13 @@ class Admin extends Component {
 		this.setState({services: event.target.value});
 	}
 
+	updateReverbLink = (event) => {
+		this.setState({reverbLink: event.target.value});
+	}
 
+	redirectHome = (event) => {
+		this.props.history.push('/');
+	}
 
 	render() {
 		if(!this.state.authenticated) {
@@ -264,6 +272,16 @@ class Admin extends Component {
 					</div>
 
 					<div className="form-group row">
+	          			<label className="col-sm-3 col-form-label">Reverb Link:</label>
+	          			<div className="col-sm-9">
+	           				 <input
+	           				 	defaultValue={getString("reverbLink")}
+	           				 	type="text" className="form-control" id="event-name"
+	           				 	onChange={this.updateReverbLink}/>
+	          			</div>
+					</div>
+
+					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Directions:</label>
 	          			<div className="col-sm-9">
 	           				<input
@@ -297,7 +315,7 @@ class Admin extends Component {
 
 					<div className= "text-center mx-auto">
 	            		<button className="btn btn-primary mr-1" onClick={this.submitUpdate}>Update</button>
-	            		<button className="btn btn-secondary">Cancel</button>
+	            		<button className="btn btn-secondary" onClick={this.redirectHome}>Cancel</button>
 					</div>
 					<br/>
 				</div>

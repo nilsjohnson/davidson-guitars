@@ -42,7 +42,7 @@ Reads strings from file.
 */
 function getStrings() {
 	if(!strings){
-		strings = fs.readFileSync('strings.json').toString();
+		strings = JSON.parse(fs.readFileSync('strings.json').toString());
 	}
 
 	return strings;

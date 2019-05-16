@@ -8,12 +8,13 @@ import owen from '../img/owen.jpg';
 class ServicesBlerb extends Component {
   render() {
     return (
-        <div dangerouslySetInnerHTML={{__html: getString("services")}}className="trans container">
+    	<div dangerouslySetInnerHTML={{__html: getString("services")}}className="trans container">
            
-        </div>          
-      );
+        </div>
+    );
   }
 
 }
 
 export default ServicesBlerb;
+

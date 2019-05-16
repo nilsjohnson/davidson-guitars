@@ -69,7 +69,7 @@ class Admin extends Component {
 		//updateStrings(Strings, password);
 		postData('/api/updateStrings', {data: strings, password: this.state.password})
 			.then(data => alert(data.result))
-			.catch(err => console.log(error));
+			.catch(err => alert(error));
 
 		 this.props.history.push('/');	
 	}

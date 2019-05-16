@@ -3,68 +3,62 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 var fs = require('fs'); 
-let password;
 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, './build')));
+
+let password;
+const portNum = 3000;
+let strings;
+var running = false;
+
+/*
+Returns password. Reads from memory if null.
+*/
 function getPassword() {
 	if(password) {
 		return password;
 	}
 	else {
-		return fs.readFileSync('password.txt').toString();
+		password = fs.readFileSync('password.txt').toString();
+		return password;
 	}
 }
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, './build')));
-
-const portNum = 3000;
-let Strings;
-var running = false;
-
-
-function writeObject(obj) {
-	fs.writeFile('Strings.json', JSON.stringify(obj, null, 2), function (err) {
+/*
+Writes strings to file.
+*/
+function writeStrings(obj) {
+	fs.writeFile('strings.json', JSON.stringify(obj, null, 2), function (err) {
 		if (err) {
 			throw err;
 		}
-		console.log('Saved!');
+		console.log('Strings Saved!');
 	}); 
 }
 
-function readStrings() {
-	fs.readFile('Strings.json', 'utf8', function(err, data) {
-		if(err) {
-			console.log(err);
-		}
-		else {
-			Strings = data;
-			console.log(data);
-			if(!running) {
-				startServer();
-				running = true;
-			}
-		}
-	});
-}
+/*
+Reads strings from file.
+*/
+function getStrings() {
+	if(!strings){
+		strings = fs.readFileSync('strings.json').toString();
+	}
 
-function startServer() {
-	app.listen(portNum, function() {
-		console.log('App is listening on port ' + portNum)
-	});
+	return strings;
 }
-
 
 /*
-to get string resources
+API to get string resources.
 */
 app.get('/api/strings', function(req, res) {
 	console.log("fetching strings");
-	//console.log(Strings);
-	res.json(Strings);
+	//console.log(strings);
+	res.json(getStrings());
 });
 
 /*
-to make sure its the correct user
+API to make sure its an authorized user
 */
 app.post('/api/authenticate', function(req, res) {
 	console.log(req.body.password);
@@ -77,16 +71,15 @@ app.post('/api/authenticate', function(req, res) {
 	}
 });
 
-
 /*
-to update string resources
+API to update string resources.
 */
 app.post('/api/updateStrings', function(req, res) {
 	if(req.body.password === getPassword()) {
 		req.body.password = "";
-		writeObject(req.body.data);
+		writeStrings(req.body.data);
 		console.log(req.body.data);
-		Strings = req.body.data;
+		strings = req.body.data;
 		console.log("Sucessful string update, " + new Date());
 	}
 	else {
@@ -97,13 +90,19 @@ app.post('/api/updateStrings', function(req, res) {
 });
 
 /*
-redirects all other requests to client
+Redirects all other requests to be handled by client.
 */
 app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-readStrings();
+/*
+Starts server listening.
+*/
+app.listen(portNum, function() {
+	console.log('App is listening on port ' + portNum)
+});
+
 
 
 

@@ -15,7 +15,7 @@ class Reverb extends Component {
             {getString("reverbHeader")}
           </h5>
           <p className="text-center">
-            {getString("reverDescription")}
+            {getString("reverbDescription")}
           </p>
           <hr/>
         </div>

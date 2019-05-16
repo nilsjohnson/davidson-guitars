@@ -11,8 +11,10 @@ class Contact extends Component {
 				 	<div className="col-6">
 				 	 	<strong>
 					 	 	<address>
-	                 			{getString("addr_1")}<br/>
-	                			{getString("addr_2")}<br/>
+					 	 		<a href="https://goo.gl/maps/DmffrAHF7zdHwhJX8" target="_blank">
+		                 			{getString("addr_1")}<br/>
+		                			{getString("addr_2")}<br/>
+		                		</a>
 	                		</address>
 	                	</strong>
 				 	</div>

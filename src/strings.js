@@ -11,7 +11,10 @@ const fetchStrings = function (callback) {
 	fetch(`/api/strings`).then(function(response){
 		if(response.ok) {
 			response.json().then(data => {
-				strings = (data);
+				//console.log("Here is the data: ");
+				//console.log(data);
+				//strings = JSON.parse(data);
+				strings = data;	
 				callback();
 			});
 		}

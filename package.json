@@ -17,6 +17,7 @@
     "bootstrap": "^4.3.1",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",
+    "facebook-plugins": "^1.0.5",
     "file-loader": "^3.0.1",
     "image-webpack-loader": "^4.6.0",
     "jquery": "^3.3.1",

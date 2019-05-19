@@ -1,8 +1,19 @@
 
 /*see https://getbootstrap.com/docs/4.0/getting-started/theming/ for available variables*/
 $theme-colors: (
-    "primary": #0e1e2e
-  );
+    "primary":    rgb(115, 50, 50),
+    "secondary":  rgb(115, 99, 85),
+    "light":      rgb(160, 161, 152),
+    "dark":       rgb(38, 37, 34)
+);
+
+       /* "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,*/
+
+/*    
+*/
 
 
 @import '~bootstrap/scss/bootstrap';
@@ -10,7 +21,7 @@ $theme-colors: (
 body
 {
   font-family: "Times New Roman", Georgia, Serif;
-  background-color: rgb(32, 32, 33) !important;
+  background-color: rgb(38, 37, 34) !important;
  /*background-image: url('../img/bg.png');*/
 }
 
@@ -32,17 +43,17 @@ footer
   bottom: 0;
   width: 100%;
   text-align: center;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,1);
 }
 
 .trans
 {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,1);
 }
 
 nav
 {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,1);
 }
 
 .header

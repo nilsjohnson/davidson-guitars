@@ -45,7 +45,7 @@ function writeStrings(obj) {
 		if (err) {
 			console.log(error)
 		}
-		log("String update write succeded, " + new Date());
+		log("String Update!, " + new Date());
 	}); 
 }
 
@@ -87,10 +87,10 @@ app.post('/api/updateStrings', function(req, res) {
 	if(req.body.password === getPassword()) {
 		writeStrings(req.body.data);
 		strings = req.body.data;
-		log("Sucessful post to '/api/updateStrings', " + new Date());
+		log("Sucessful string update, " + new Date());
 	}
 	else {
-		log("Someone '/api/updateStrings' with wrong password!, " + new Date());
+		log("Someone hit this api with wrong password!, " + new Date());
 	}
 	res.json({result: "Update Sucessful!"})
 	

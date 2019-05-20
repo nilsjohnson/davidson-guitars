@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../strings.js';
+import {getString} from '../util/strings.js';
 
 class Contact extends Component {		
 	render() {

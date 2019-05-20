@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import '../css/app.scss';
-import {getString, updateStrings, postData } from '../strings';
+import {getString, updateStrings, postData } from '../util/strings';
 import PwModal from '../component/PwModal.jsx';
 import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
@@ -167,10 +167,10 @@ class Admin extends Component {
 		return (
 			<div>
 				<Header/>
-				<Navbar/>
 				<br/>
 				<div className="trans container">
-					<br/>
+					<hr/>
+					<h2 className="text-center">Edit Homepage</h2> <br/>
 					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Name:</label>
 	          			<div className="col-sm-9">
@@ -319,6 +319,12 @@ class Admin extends Component {
 					</div>
 					<br/>
 				</div>
+
+				<div className="trans container">
+					<hr/>
+					<h2 className="text-center">Edit Blog</h2> <br/>
+					
+				</div>	
 			</div>
 		);
 	}

@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import Navbar from '../component/Navbar.jsx';
+import BlogSelector from '../component/blog/BlogSelector.jsx';
 import Landing from '../component/Landing.jsx';
-import Reverb from '../component/Reverb.jsx';
 import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
-import BlogWell from '../component/BlogWell.jsx';
-import DAO from '../data/DAO.js';
+import PostContainer from '../component/blog/PostContainer.jsx';
 
 
 class Blog extends Component {
   constructor(props) {
-  	super(props);
+    super(props);
 
-  	this.state = {
-  		dao: new DAO(),
-  		posts: []
-  	};
+    this.state = {
+      post: null
+    }
   }
 
-  setPosts = (posts) => {
-  	this.setState({posts: posts});
-  	console.log(posts);
+  getView = () => {
+    let url = new URL(window.location.href);
+    let query = url.searchParams.get("post");
+    // if the is a query find it
+    if(query) {
+      return(
+        <PostContainer
+          postId={query}
+        />                  
+        );
+    }
+    else {
+      return (
+        <div>
+        <Header/>
+        <div className="trans container"> <hr/>
+          <BlogSelector/>
+          <hr/>
+        </div>
+        <Footer/>
+        </div>
+      );
+    }
   }
-
-  componentDidMount() {
-  	this.state.dao.getBlogPosts(this.setPosts);
-  }	
 
   render() {
     return (
       <div>
-        <Header/>
-        <Navbar />
-        <BlogWell/>
-        <BlogWell/>
-        <Footer/>
+        {this.getView()}
       </div>
     );
   }

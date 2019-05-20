@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../strings.js';
+import {getString} from '../util/strings.js';
 
 class Reverb extends Component {
   render() {
     return (
       <div>
         <div className="row">
+          <h4 className="text-center">{getString("reverbHeader")}</h4>
           <div className="mx-auto d-block">
             <a href={getString("reverbLink")}>
               <img 
@@ -16,7 +17,6 @@ class Reverb extends Component {
             </a> 
           </div>  
         </div>
-        <h3 className="text-center">{getString("reverbHeader")}</h3>
       </div>
       );
   }

@@ -7,8 +7,8 @@ import DAO from '../data/DAO.js';
 import Blerb from './Blerb.jsx';
 import Reverb from './Reverb.jsx';
 import Facebook from './Facebook.jsx';
-
-import {getString, Strings} from '../strings.js';
+import BlogSelector from './blog/BlogSelector.jsx';
+import { getString } from '../util/strings.js';
 
 
 class Landing extends Component {
@@ -84,7 +84,7 @@ class Landing extends Component {
             <div className="col-md-6">
               <Reverb/>
               <hr/>
-              <Facebook/>
+              <BlogSelector/>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../strings.js';
+import {getString} from '../util/strings.js';
 import frets from '../img/frets.jpg';
 import owen from '../img/owen.jpg';
 

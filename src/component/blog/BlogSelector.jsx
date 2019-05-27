@@ -3,7 +3,6 @@ import '../../css/app.scss';
 import { getLatest } from '../../util/blog.js';
 import BlogHeader from './BlogHeader.jsx';
 
-
 class BlogSelector extends Component {
 	constructor(props) {
 		super(props);
@@ -14,10 +13,9 @@ class BlogSelector extends Component {
 
 		let callback = this.setPosts;
 		// fetches the latests blog posts
-		getLatest().then(function(response) {
+		getLatest(this.props.maxResults).then(function(response) {
 			if(response.ok) {
 				response.json().then(data => {
-					console.log(data.items);
 					callback(data.items);
 					
 				});
@@ -35,11 +33,11 @@ class BlogSelector extends Component {
 	
  	render() {
     	return (
-      	<div>
-      		<h3 className="text-center">Blog</h3>
-      			{this.state.posts.map(item => <BlogHeader
-      				key={item.title}
-      				post={item}/>)}
+      	<div id="blog-selector">
+      		{this.state.posts.map(item => <BlogHeader
+      			key={item.id}
+      			post={item}/>)
+      		}
 
      	</div>
     	);

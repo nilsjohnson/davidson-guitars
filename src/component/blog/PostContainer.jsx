@@ -4,6 +4,7 @@ import { getLatest, getPostById } from '../../util/blog.js';
 import BlogHeader from './BlogHeader.jsx';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';
+import Navbar from '../Navbar.jsx';
 
 
 class PostContainer extends Component {
@@ -11,7 +12,9 @@ class PostContainer extends Component {
 		super(props);
 
 		this.state = {
-			content: null
+			content: "",
+			title: "",
+			date: ""
 		};
 
 		let callback = this.setPost;
@@ -31,14 +34,24 @@ class PostContainer extends Component {
 	}
 
 	setPost = (post) => {
-		this.setState({content: post.content});
+		this.setState({
+			content: post.content, 
+			title: post.title
+			});
 	}
 
  	render() {
     	return (
       	<div>
       		<Header/>
-      		<div className="trans container" 
+      		<Navbar/>
+      		<br/>
+   			<div className="trans container" id="post-container">
+   				<h2 className="text-center">
+   					{this.state.title}
+   				</h2>
+      		</div>
+      		<div className="trans container" id="post-container" 
       			dangerouslySetInnerHTML={{__html: this.state.content}}>
       		</div>
       		<Footer/>

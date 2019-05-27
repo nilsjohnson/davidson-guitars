@@ -6,9 +6,9 @@ import {getString} from '../util/strings.js';
 class Footer extends Component {
   render() {
     return (
-        <footer>
-          <p className="text-center">{getString("footer")}</p> 
-        </footer>
+        <div className="trans footer">
+          <span className="text-center">{getString("footer")}</span> 
+        </div>
       );
   }
 }

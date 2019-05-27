@@ -18,17 +18,25 @@ $theme-colors: (
 
 @import '~bootstrap/scss/bootstrap';
 
-body
-{
-  font-family: "Times New Roman", Georgia, Serif;
-  background-color: rgb(38, 37, 34) !important;
- /*background-image: url('../img/bg.png');*/
+html {
+  height: 100%;
+  box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body
 {
-  font-family: "";
-  letter-spacing: 2px;
+  font-family: Georgia, serif;
+  background-color: rgb(38, 37, 34) !important;
+  padding-bottom: 6rem; /*allow footer to always bet on bottom, but not fixed*/
+  position: relative; /*allow footer to always bet on bottom, but not fixed*/
+  min-height: 100%;
+ /*background-image: url('../img/bg.png');*/
 }
 
 ul
@@ -36,14 +44,14 @@ ul
   list-style-type: none;
 }
 
-footer
+.footer
 {
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  background: rgba(255,255,255,1);
+  padding: 1rem;
 }
 
 .trans
@@ -66,15 +74,6 @@ nav
   flex-direction: row;
 }
 
-.dead-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-
 #login .container #login-row #login-column #login-box {
   margin-top: 120px;
   max-width: 600px;
@@ -84,14 +83,18 @@ nav
 }
 
 #login #login-row #login-column #login-box #login-form {
-  padding: 20px;
-}
-
-#login #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+  padding: 20px;
 }
 
 .error {
   background-color: red;
 }
 
+#blog-selector {
+  padding: 1em;
+}
+
+#post-container {
+  padding: 1em;
+}

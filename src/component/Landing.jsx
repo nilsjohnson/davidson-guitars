@@ -84,7 +84,11 @@ class Landing extends Component {
             <div className="col-md-6">
               <Reverb/>
               <hr/>
-              <BlogSelector/>
+              <h4 className="text-center">Recent Blog Posts</h4>
+              <BlogSelector
+                maxResults={5}
+                />
+              <a href="/blog">See More</a>
             </div>
           </div>
         </div>

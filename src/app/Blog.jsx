@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
 import BlogSelector from '../component/blog/BlogSelector.jsx';
-import Landing from '../component/Landing.jsx';
+import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
 import PostContainer from '../component/blog/PostContainer.jsx';
@@ -31,6 +31,7 @@ class Blog extends Component {
       return (
         <div>
         <Header/>
+        <Navbar/>
         <div className="trans container"> <hr/>
           <BlogSelector/>
           <hr/>

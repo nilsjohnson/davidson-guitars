@@ -9,6 +9,7 @@ import Reverb from './Reverb.jsx';
 import Facebook from './Facebook.jsx';
 import BlogSelector from './blog/BlogSelector.jsx';
 import { getString } from '../util/strings.js';
+import Services from './Services.jsx';
 
 
 class Landing extends Component {
@@ -41,7 +42,7 @@ class Landing extends Component {
 
         {message}   
         
-        <div className="container trans"> <hr/> 
+        <div className="container trans well"> 
           <div className="row">
             <div className="col-md-6">
               <img src={sample} className="img-fluid border"/>
@@ -52,46 +53,27 @@ class Landing extends Component {
               <Contact/>
             </div>
           </div>
-          <hr/>
         </div>
 
-        <div className="container trans"> <hr/> 
+        <div className="container trans well">
+          <h1 className="text-center">The Shop</h1>
           <div className="row">
             <div className="col-md-6">
-              <h4>Instrument Services</h4>
-              <ul>
-                <li><strong>Acoustic and Electric Guitar Setup</strong> - action, truss rods, intonation, etc.</li>
-                <li><strong>Pickup Installation</strong> - for electric and acoustic</li>
-                <li><strong>Fretwork</strong> - leveling, polishing, end dressing, etc.</li>
-              </ul>
-
-              <h4>Repairs</h4>
-              <ul>
-                <li><strong>Bridge Re-gluing</strong> - steel string, classical, 12 string</li>
-                <li><strong>Crack Repair</strong> - for cracks in soundboards, sides, backs, etc.</li>
-                <li><strong>Electronic Repair</strong> - output jacks, pots, general wiring issues, etc.</li>
-                <li><strong>Neck Resets</strong> - dovetail, bolt-on, mortise/tenons, etc.</li>
-                <li><strong>Broken Necks, Peg-heads</strong> - cracked necks, peg-heads, heel-blocks, etc.</li>
-              </ul>
-              <h4>Restorations</h4>
-              <ul>
-                <li><strong>Knowledgeable Evaluations</strong> - restore your instrument appropriately</li>
-                <li><strong>Accurate Part Replication</strong> - bridges, fingerboards, binding, rosettes, etc.</li>
-                <li><strong>Refinishing</strong> - french polishing, lacquers, touch-ups, etc.</li>
-              </ul>
+              <Services/>
             </div>
-
-            <div className="col-md-6">
-              <Reverb/>
-              <hr/>
-              <h4 className="text-center">Recent Blog Posts</h4>
+            <div className="col-md-6 line-left">
               <BlogSelector
-                maxResults={5}
+                maxResults={4}
                 />
-              <a href="/blog">See More</a>
+                <a href="/blog">See More</a>
             </div>
           </div>
         </div>
+
+        <div className="container trans well">
+          <Reverb/>
+        </div>
+       
       </div>
       );
   }

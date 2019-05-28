@@ -292,7 +292,7 @@ class Admin extends Component {
 	          			</div>
 					</div>
 
-					{/*<div className="form-group row">
+					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Services (html):</label>
 	          			<div className="col-sm-9">
 	           				 <textarea
@@ -300,7 +300,7 @@ class Admin extends Component {
 	           				 	type="text" className="form-control" id="event-name"
 	           				 	onChange={this.updateServices}/>
 	          			</div>
-					</div>*/}
+					</div>
 
 					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Message:</label>

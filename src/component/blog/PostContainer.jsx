@@ -43,18 +43,15 @@ class PostContainer extends Component {
  	render() {
     	return (
       	<div>
-      		<Header/>
-      		<Navbar/>
-      		<br/>
-   			<div className="trans container" id="post-container">
+   			<div className="trans container well" id="post-container">
    				<h2 className="text-center">
    					{this.state.title}
    				</h2>
+   				<hr/>
       		</div>
       		<div className="trans container" id="post-container" 
       			dangerouslySetInnerHTML={{__html: this.state.content}}>
       		</div>
-      		<Footer/>
      	</div>
     	);
   }

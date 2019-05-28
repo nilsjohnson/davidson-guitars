@@ -19,23 +19,31 @@ class Blog extends Component {
   getView = () => {
     let url = new URL(window.location.href);
     let query = url.searchParams.get("post");
-    // if the is a query find it
+    // if there is a query, find it
     if(query) {
-      return(
+      /*return(
         <PostContainer
           postId={query}
         />                  
-        );
+        );*/
+
+        return (
+        <div>
+        <Header/>
+        <Navbar/>
+        <PostContainer
+          postId={query}
+        /> 
+        <Footer/>
+        </div>
+      );
     }
     else {
       return (
         <div>
         <Header/>
         <Navbar/>
-        <div className="trans container"> <hr/>
-          <BlogSelector/>
-          <hr/>
-        </div>
+        <BlogSelector/>
         <Footer/>
         </div>
       );

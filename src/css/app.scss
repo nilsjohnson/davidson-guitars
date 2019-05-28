@@ -1,8 +1,8 @@
 
 /*see https://getbootstrap.com/docs/4.0/getting-started/theming/ for available variables*/
 $theme-colors: (
-    "primary":    rgb(115, 50, 50),
-    "secondary":  rgb(115, 99, 85),
+    "primary":    rgb(64, 29, 29),
+    "secondary":  rgb(115, 94, 83),
     "light":      rgb(160, 161, 152),
     "dark":       rgb(38, 37, 34)
 );
@@ -74,27 +74,25 @@ nav
   flex-direction: row;
 }
 
-#login .container #login-row #login-column #login-box {
-  margin-top: 120px;
-  max-width: 600px;
-  height: 200px;
-  border: 1px solid #9C9C9C;
-  background-color: rgba(255,255,255,0.9);
-}
-
-#login #login-row #login-column #login-box #login-form {
-  margin-top: -85px;
-  padding: 20px;
+#login-box {
+  margin-top: 100px;
+  margin-right: 300px;
+  margin-left: 300px;
 }
 
 .error {
   background-color: red;
 }
 
-#blog-selector {
+.well {
   padding: 1em;
+  margin-top: 1em;
 }
 
 #post-container {
   padding: 1em;
+}
+
+.line-left {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }

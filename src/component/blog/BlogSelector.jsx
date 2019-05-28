@@ -16,8 +16,8 @@ class BlogSelector extends Component {
 		getLatest(this.props.maxResults).then(function(response) {
 			if(response.ok) {
 				response.json().then(data => {
+					console.log(data.items);
 					callback(data.items);
-					
 				});
 			}
 			else {
@@ -33,7 +33,7 @@ class BlogSelector extends Component {
 	
  	render() {
     	return (
-      	<div id="blog-selector">
+      	<div>
       		{this.state.posts.map(item => <BlogHeader
       			key={item.id}
       			post={item}/>)

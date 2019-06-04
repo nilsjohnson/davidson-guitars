@@ -2,18 +2,29 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import '../css/app.scss';
 import {getString, updateStrings, postData } from '../util/strings';
-import PwModal from '../component/PwModal.jsx';
+import PwModal from '../adminComponent/PwModal.jsx';
 import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
+import UploadForm from '../adminComponent/UploadForm.jsx';
 
 class Admin extends Component {
 	constructor(props) {
 		super(props);
+
+		// check if authenticated
+		let isAuthenticated = false;
+		if (document.cookie.split(';').filter(function(item) {
+			return item.indexOf('authenticated=true') >= 0
+		}).length) {
+			isAuthenticated = true;
+		}
+
+
 		this.state = {
 			invalidPassword: false,
 			password: "",
-			authenticated: false,
+			authenticated: isAuthenticated,
 			name: getString("name"),
 			header: getString("header"),
 			description: getString("description"),
@@ -24,7 +35,6 @@ class Admin extends Component {
 			addr_2: getString("addr_2"),
 			footer: getString("footer"),
 			reverbHeader: getString("reverbHeader"),
-			reverbDescription: getString("reverbDescription"),
 			directions: getString("directions"),
 			services: getString("services"),
 			message: getString("message")
@@ -70,10 +80,13 @@ class Admin extends Component {
 
 		//updateStrings(Strings, password);
 		postData('/api/updateStrings', {data: strings, password: this.state.password})
-			.then(data => alert(data.result))
-			.catch(err => alert(error));
+			.then(data => this.finishUpdate(data))
+			.catch(err => alert(err));
+	}
 
-		 this.props.history.push('/');	
+	finishUpdate = (data) => {
+		alert(data.result);
+		this.redirectHome();
 	}
 
 	setAuthenticated = (password) => {
@@ -132,10 +145,6 @@ class Admin extends Component {
 		this.setState({reverbHeader: event.target.value});
 	}
 
-	updateReverbDesc = (event) => {
-		this.setState({reverbDescription: event.target.value});
-	}
-
 	updateDirections = (event) => {
 		this.setState({directions: event.target.value});
 	}
@@ -152,8 +161,14 @@ class Admin extends Component {
 		this.setState({reverbLink: event.target.value});
 	}
 
-	redirectHome = (event) => {
+	redirectHome = () => {
 		this.props.history.push('/');
+	}
+
+	logout = () => {
+		document.cookie = "authenticated=false";
+		this.redirectHome();
+		alert("You are now logged out.");
 	}
 
 	render() {
@@ -167,10 +182,12 @@ class Admin extends Component {
 		return (
 			<div>
 				<Header/>
-				<br/>
-				<div className="trans container">
-					<hr/>
-					<h2 className="text-center">Edit Homepage</h2> <br/>
+				
+				<div className="trans container well">
+					<button className="btn btn-secondary float-right" onClick={this.logout}>Log Out</button>
+				</div>
+				<div className="trans container well">
+					<h2 className="text-center">Edit Homepage</h2><br/>
 					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Name:</label>
 	          			<div className="col-sm-9">
@@ -262,16 +279,6 @@ class Admin extends Component {
 					</div>
 
 					<div className="form-group row">
-	          			<label className="col-sm-3 col-form-label">Reverb Description:</label>
-	          			<div className="col-sm-9">
-	           				 <input
-	           				 	defaultValue={getString("reverbDescription")}
-	           				 	type="text" className="form-control" id="event-name"
-	           				 	onChange={this.updateReverbDesc}/>
-	          			</div>
-					</div>
-
-					<div className="form-group row">
 	          			<label className="col-sm-3 col-form-label">Reverb Link:</label>
 	          			<div className="col-sm-9">
 	           				 <input
@@ -320,10 +327,9 @@ class Admin extends Component {
 					<br/>
 				</div>
 
-				<div className="trans container">
-					<hr/>
-					<h2 className="text-center">Edit Blog</h2> <br/>
-					
+				<div className="trans container well">
+					<h2 className="text-center">Edit Carousel Images</h2>
+					<UploadForm/>
 				</div>	
 			</div>
 		);

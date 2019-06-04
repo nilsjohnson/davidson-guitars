@@ -3,15 +3,19 @@ import '../css/app.scss';
 
 
 class Navbar extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-sm trans justify-content-center">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link" href="/">Home</a>
+            <a className={this.props.activePage === "home" ? " active nav-link" : " nav-link" } href="/">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/blog">Blog</a>
+             <a className={this.props.activePage === "blog" ? " active nav-link" : " nav-link" } href="/blog">The Shop</a>
           </li>
         </ul>
       </nav>

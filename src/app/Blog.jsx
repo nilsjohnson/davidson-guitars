@@ -8,52 +8,18 @@ import PostContainer from '../component/blog/PostContainer.jsx';
 
 
 class Blog extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      post: null
-    }
-  }
-
-  getView = () => {
+  render() {
     let url = new URL(window.location.href);
     let query = url.searchParams.get("post");
-    // if there is a query, find it
-    if(query) {
-      /*return(
-        <PostContainer
-          postId={query}
-        />                  
-        );*/
 
-        return (
-        <div>
-        <Header/>
-        <Navbar/>
-        <PostContainer
-          postId={query}
-        /> 
-        <Footer/>
-        </div>
-      );
-    }
-    else {
-      return (
-        <div>
-        <Header/>
-        <Navbar/>
-        <BlogSelector/>
-        <Footer/>
-        </div>
-      );
-    }
-  }
-
-  render() {
     return (
       <div>
-        {this.getView()}
+        <Header/>
+        <Navbar
+            activePage="blog"
+          />
+         {query ? <PostContainer postId={query}/> : <BlogSelector/>}
+        <Footer/>
       </div>
     );
   }

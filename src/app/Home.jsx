@@ -11,7 +11,9 @@ class Home extends Component {
     return (
       <div>
         <Header/>
-        <Navbar />
+        <Navbar
+            activePage="home"
+          />
         <Landing/>
         <Footer/>
       </div>

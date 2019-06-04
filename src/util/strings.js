@@ -42,7 +42,7 @@ const getString = function(key) {
 /*
 updates strings on the server
 */
-const updateStrings = function(newStrings) {
+function updateStrings(newStrings) {
 	console.log(newStrings);
 	fetch('/api/updateStrings', {
     	method: 'POST',
@@ -73,4 +73,12 @@ function postData(url = '', data = {}) {
     .then(response => response.json());
 }
 
-export {getString, fetchStrings, updateStrings, postData};
+/*
+gets carousel images
+*/
+function getCarouselImages(){
+	return fetch('/api/carousel');
+}
+
+
+export {getString, fetchStrings, updateStrings, postData, getCarouselImages};

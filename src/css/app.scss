@@ -29,8 +29,7 @@ html {
   box-sizing: inherit;
 }
 
-body
-{
+body {
   font-family: Georgia, serif;
   background-color: rgb(38, 37, 34) !important;
   padding-bottom: 6rem; /*allow footer to always bet on bottom, but not fixed*/
@@ -39,13 +38,11 @@ body
  /*background-image: url('../img/bg.png');*/
 }
 
-ul
-{
+ul {
   list-style-type: none;
 }
 
-.footer
-{
+.footer {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -54,13 +51,15 @@ ul
   padding: 1rem;
 }
 
-.trans
-{
+.trans {
   background: rgba(255,255,255,1);
 }
 
-nav
-{
+.container {
+  overflow:auto;
+}
+
+nav {
   background: rgba(255,255,255,1);
 }
 
@@ -95,4 +94,8 @@ nav
 
 .line-left {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.active {
+  font-weight: bold;
 }

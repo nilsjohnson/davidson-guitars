@@ -6,7 +6,6 @@ import {toReadable } from '../../util/util.js';
 
 class BlogHeader extends Component {
  	getImage = () => {
-    console.log(this.props.post);
     if(typeof this.props.post.images === "undefined"){
       return "";
     }

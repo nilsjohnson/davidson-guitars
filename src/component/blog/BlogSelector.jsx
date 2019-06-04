@@ -16,7 +16,6 @@ class BlogSelector extends Component {
 		getLatest(this.props.maxResults).then(function(response) {
 			if(response.ok) {
 				response.json().then(data => {
-					console.log(data.items);
 					callback(data.items);
 				});
 			}

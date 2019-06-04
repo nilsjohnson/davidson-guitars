@@ -3,13 +3,13 @@ import '../css/app.scss';
 import sample from '../img/sample.jpg';
 import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
-import DAO from '../data/DAO.js';
 import Blerb from './Blerb.jsx';
 import Reverb from './Reverb.jsx';
 import Facebook from './Facebook.jsx';
 import BlogSelector from './blog/BlogSelector.jsx';
-import { getString } from '../util/strings.js';
+import { getString, getCarouselImages } from '../util/strings.js';
 import Services from './Services.jsx';
+import MyCarousel from './MyCarousel.jsx';
 
 
 class Landing extends Component {
@@ -18,15 +18,34 @@ class Landing extends Component {
 
     this.state = {
       header: "",
-      description: ""
+      description: "",
+      carouselImages: []
     };
+
+    let callback = this.setCarouselImages;
+    getCarouselImages().then(function(response){
+        if(response.ok) {
+            response.json().then(data => {
+              let thing = ["hi", "bryn"];
+              console.log(thing);
+              console.log(data);  
+              callback(data);
+          });
+        }
+        else {
+          console.log("problem fetching carousel images");
+        } 
+      });
+  }
+
+  setCarouselImages = (images) => {
+    this.setState({carouselImages: images})
   }
 
   setBlerb = (blerb) => {
     this.setState({description: blerb.description});
     this.setState({header: blerb.header});
   }
-
 
   render() {
 
@@ -45,7 +64,9 @@ class Landing extends Component {
         <div className="container trans well"> 
           <div className="row">
             <div className="col-md-6">
-              <img src={sample} className="img-fluid border"/>
+              <MyCarousel
+                images={this.state.carouselImages}
+              />
             </div>
             <div className="col-md-6">
               <Blerb/>

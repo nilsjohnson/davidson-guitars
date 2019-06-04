@@ -4,14 +4,18 @@ const app = express();
 const bodyParser = require('body-parser');
 const fs = require('fs'); 
 const busboy = require('connect-busboy');
-const shell = require('shelljs'); 
+const shell = require('shelljs');
+const { spawn } = require('child_process'); 
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './build')));
 app.use(busboy());
 
 const STRING_FILE_NAME = 'strings.json';
-const CAROUSEL_FILE_NAME = "carousel.json";
+const CAROUSEL_IMG_WIDTH = 500;
+const CAROUSEL_IMG_HIGHT = 500;
+const CAROUSEL_DIR = "./build/carouselImg";
+const PORT_NUM = 3000;
 
 /*
 Logs to file
@@ -64,11 +68,16 @@ function getStrings() {
 Returns carousel images. Reads from file if necessary.
 */
 function getCarouselImages() {
-	if(!carouselImg) {
-		carouselImg = JSON.parse(fs.readFileSync('strings.json').toString());
+	if(!carouselImgs){
+		carouselImgs = [];
+		let files = fs.readdirSync(CAROUSEL_DIR);
+		
+		for(let i = 0; i < files.length; i++) {
+			console.log(files[i]);
+			carouselImgs.push("/carouselImg/" + files[i]);
+		}
 	}
-
-	return carouselImg;
+	return carouselImgs;
 }
 
 function writeCarouselImages() {
@@ -89,7 +98,7 @@ app.get('/api/strings', function(req, res) {
 
 /*API to get carousel images.*/
 app.get('/api/carousel', function(req, res) {
-	res.json(carouselImgs);
+	res.json(getCarouselImages());
 });
 
 /*
@@ -145,68 +154,75 @@ app.post('/carouselUpload', function (req, res, next) {
         fstream = fs.createWriteStream(__dirname + '/carouselImg/' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {    
-            console.log("Upload Finished of " + filename);
+            console.log("'" + filename + "' uploaded, now resizing...");
             
             let src = __dirname + '/carouselImg/' + filename;
-            console.log("src: " + src);
-
             let dest = __dirname + '/build/carouselImg/' + filename;
-            console.log("dest: " + dest);
+            let finalAddr = '/carouselImg/' + filename;
 
-            let addr = '/carouselImg/' + filename;
-            console.log("addr: " + addr);
-
-            //let args = 'Resize, ' + src + ", " + dest + " 500 500";
-            let args = ['Resize', src, dest, '500', '500'];
-            console.log(args);
-			const ls = spawn('java', args);
-
-			ls.stdout.on('data', (data) => {
-			  console.log(`stdout: ${data}`);
-			});
-
-			ls.stderr.on('data', (data) => {
-			  console.log(`stderr: ${data}`);
-			});
-
-			ls.on('close', (code) => {
-			  console.log(`child process exited with code ${code}`);
-			});
-			            
-            //shell.cp(src, dest);
-            carouselImgs.push(addr);
-            writeObj(carouselImgs, CAROUSEL_FILE_NAME);
-            res.json({status: addr})              
+			resize(src, dest, CAROUSEL_IMG_WIDTH, CAROUSEL_IMG_HIGHT, function(destination){
+				res.json({adress: finalAddr})
+				addCarouselImage(finalAddr);
+				shell.cp(dest, src); // this is to have the same size pictures outside the build directory
+			});           
         });
     });
 });
 
-// setup
-let password;
-const portNum = 3000;
-let strings;
-let carouselImgs = [];
+/*
+To resize images. Spawns a Java program. 
+	-Will take src image, crop to proper aspect ratio and resize.
+	-Sections of edge may be lost, but image will not appear "smooshed"
+*/
+function resize(src, dest, width, height, callback) {
+	let args = ['Resize', src, dest, width, height];
+	const resizer = spawn('java', args);
 
+	resizer.stdout.on('data', (data) => {
+		  console.log(`stdout: ${data}`);
+		});
+
+		resizer.stderr.on('data', (data) => {
+		  console.log(`stderr: ${data}`);
+		});
+
+		resizer.on('close', (code) => {
+		  console.log(`child process exited with code ${code}, image resized!`);
+		  if(code === 0) {
+		  	callback(dest)
+		  }
+		});
+}
+
+/*
+to add carousel images to list
+*/
+function addCarouselImage(image) {
+	if(!carouselImgs) {
+		carouselImgs = getCarouselImages();
+	}
+	carouselImgs.push(image);
+}
+
+/*
+----Initial setup before running----
+*/
+let password;
+let strings;
+let carouselImgs = null;
+
+shell.mkdir('-p', 'build/carouselImg');
 shell.rm('-rf', 'build/carouselImg');
 shell.cp('-R', 'carouselImg/', 'build/carouselImg')
 
-const { spawn } = require('child_process');
 
-/*const child = execFile('java', ['Hi'], (error, stdout, stderr) => {
-  if (error) {
-    throw error;
-  }
-  console.log(stdout);
-});*/
-
-
-
+/*-----END----*/
 
 /*
 Starts server listening.
 */
-app.listen(portNum, function() {
-	console.log('App is listening on port ' + portNum)
+app.listen(PORT_NUM, function() {
+	console.log('App is listening on port ' + PORT_NUM)
 });
 
 

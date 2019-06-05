@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../util/strings.js';
+import {getString} from '../util/data.js';
 
 class Blerb extends Component {		
 	render() {

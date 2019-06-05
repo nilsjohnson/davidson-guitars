@@ -4,7 +4,7 @@ import Home from './app/Home.jsx';
 import Admin from './app/Admin.jsx';
 import Blog from './app/Blog.jsx';
 import { BrowserRouter, Route } from 'react-router-dom'
-import {getString, fetchStrings} from './util/strings.js';
+import {getString, fetchStrings} from './util/data.js';
 
 let render = function() {
 	ReactDOM.render((

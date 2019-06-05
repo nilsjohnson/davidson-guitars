@@ -13,25 +13,10 @@ class MyCarousel extends Component {
 	      			className="d-inline w-100"
 	      			/>
     			</Carousel.Item>)
-    	}
-
-
-	    	
+    		}
     	</Carousel>
       );
   }
 }
 
 export default MyCarousel;
-
-/*
-<Carousel.Item>
-		    	{this.props.images.map(item => <img
-	      			key={item}
-	      			src={item}
-	      			className="d-inline w-100"
-	      			/>)
-	      		}
-	    	</Carousel.Item>
-*/
-

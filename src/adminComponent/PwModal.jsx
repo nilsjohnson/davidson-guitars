@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import { postData } from '../util/strings.js';
+import { postData } from '../util/data.js';
 
 class PwModal extends Component {	
 	constructor(props) {

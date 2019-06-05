@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/app.scss';
-import { getLatest } from '../../util/blog.js';
+import { getLatest } from '../../util/data.js';
 import BlogHeader from './BlogHeader.jsx';
 
 class BlogSelector extends Component {

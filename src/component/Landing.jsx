@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import sample from '../img/sample.jpg';
 import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
 import Blerb from './Blerb.jsx';
 import Reverb from './Reverb.jsx';
 import Facebook from './Facebook.jsx';
 import BlogSelector from './blog/BlogSelector.jsx';
-import { getString, getCarouselImages } from '../util/strings.js';
+import { getString, getCarouselImages } from '../util/data.js';
 import Services from './Services.jsx';
 import MyCarousel from './MyCarousel.jsx';
 
@@ -25,10 +24,7 @@ class Landing extends Component {
     let callback = this.setCarouselImages;
     getCarouselImages().then(function(response){
         if(response.ok) {
-            response.json().then(data => {
-              let thing = ["hi", "bryn"];
-              console.log(thing);
-              console.log(data);  
+            response.json().then(data => { 
               callback(data);
           });
         }

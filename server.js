@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, './build')));
 app.use(busboy());
 
 const STRING_FILE_NAME = 'strings.json';
+const CAROUSEL_IMG_FILE_NAME = "images.json";
 const CAROUSEL_IMG_WIDTH = 500;
 const CAROUSEL_IMG_HIGHT = 500;
 const CAROUSEL_DIR = "./build/carouselImg";
@@ -42,7 +43,18 @@ function getPassword() {
 }
 
 /*
-Writes strings to file.
+Returns strings. Reads from file if necessary.
+*/
+function getStrings() {
+	if(!strings) {
+		strings = JSON.parse(fs.readFileSync('strings.json'));
+	}
+
+	return strings;
+}
+
+/*
+Writes object to file as JSON
 */
 function writeObj(obj, name) {
 	fs.writeFile(name, JSON.stringify(obj, null, 2), function (err) {
@@ -54,39 +66,43 @@ function writeObj(obj, name) {
 }
 
 /*
-Returns strings. Reads from file if necessary.
+Reads JSON object from file and returns it
 */
-function getStrings() {
-	if(!strings) {
-		strings = JSON.parse(fs.readFileSync('strings.json').toString());
-	}
-
-	return strings;
+function readObj(name) {
+	let obj = JSON.parse(fs.readFileSync(name));
+	return obj;
 }
 
 /*
 Returns carousel images. Reads from file if necessary.
 */
 function getCarouselImages() {
-	if(!carouselImgs){
-		carouselImgs = [];
-		let files = fs.readdirSync(CAROUSEL_DIR);
-		
-		for(let i = 0; i < files.length; i++) {
-			console.log(files[i]);
-			carouselImgs.push("/carouselImg/" + files[i]);
-		}
+	if(!carouselImgs) {
+		carouselImgs = readObj(CAROUSEL_IMG_FILE_NAME);
 	}
 	return carouselImgs;
 }
 
-function writeCarouselImages() {
-	fs.writeFile('carousel.json', JSON.stringify(obj, null, 2), function (err) {
-		if (err) {
-			console.log(error)
+/*
+Deletes image from carousel array
+*/
+function deleteImage(image) {
+	if(!carouselImgs) {
+		getCarouselImages();
+	}
+	
+	let removed = false;	
+
+	for(let i = 0; i < carouselImgs.length; i++) {
+		if(image === carouselImgs[i]) {
+			carouselImgs.splice(i, 1);
+			removed = true;
 		}
-		log("String update write succeded, " + new Date());
-	}); 
+	}
+
+	if(!removed){
+		throw("image not found!");
+	}
 }
 
 /*
@@ -131,20 +147,12 @@ app.post('/api/updateStrings', function(req, res) {
 		result = "";
 	}
 	res.json({result: result});
-	
 });
 
 /*
-Redirects all other requests to be handled by client.
+API To handle carousel uploads
 */
-app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-/*
-To handle carousel uploads
-*/
-app.post('/carouselUpload', function (req, res, next) {
+app.post('/api/carouselUpload', function (req, res, next) {
     let fstream;
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
@@ -161,12 +169,38 @@ app.post('/carouselUpload', function (req, res, next) {
             let finalAddr = '/carouselImg/' + filename;
 
 			resize(src, dest, CAROUSEL_IMG_WIDTH, CAROUSEL_IMG_HIGHT, function(destination){
-				res.json({adress: finalAddr})
+				res.json({address: finalAddr})
 				addCarouselImage(finalAddr);
 				shell.cp(dest, src); // this is to have the same size pictures outside the build directory
 			});           
         });
     });
+});
+
+/*
+API to handle carousel image deletes
+*/
+app.delete('/api/carouselImgDelete', function(req, res) {
+	console.log(req.body.data);
+	let result;
+	try {
+		deleteImage(req.body.data);
+		result = "Delete Success!";
+	}
+	catch(err) {
+		console.log(err);
+		res.status(400);
+		result = "Delete Failed."
+	}
+
+	res.json({result: result});
+});
+
+/*
+Redirects all other requests to be handled by client.
+*/
+app.get('/*', function(req, res) {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 /*
@@ -179,19 +213,23 @@ function resize(src, dest, width, height, callback) {
 	const resizer = spawn('java', args);
 
 	resizer.stdout.on('data', (data) => {
-		  console.log(`stdout: ${data}`);
-		});
+		console.log(`stdout: ${data}`);
+	});
 
-		resizer.stderr.on('data', (data) => {
-		  console.log(`stderr: ${data}`);
-		});
+	resizer.stderr.on('data', (data) => {
+		console.log(`stderr: ${data}`);
+	});
 
-		resizer.on('close', (code) => {
-		  console.log(`child process exited with code ${code}, image resized!`);
-		  if(code === 0) {
-		  	callback(dest)
-		  }
-		});
+	resizer.on('close', (code) => {
+	 	console.log(`child process exited with code ${code}.`);
+	  	if(code === 0) {
+	  		console.log("Image was resized.");
+	  		callback(dest)
+	  	}
+	  	else {
+	  		console.log("Image not resized.");
+	  	}
+	});
 }
 
 /*
@@ -201,7 +239,9 @@ function addCarouselImage(image) {
 	if(!carouselImgs) {
 		carouselImgs = getCarouselImages();
 	}
+	console.log("carouselImgs: " + carouselImgs);
 	carouselImgs.push(image);
+	writeObj(carouselImgs, CAROUSEL_IMG_FILE_NAME);
 }
 
 /*
@@ -211,12 +251,18 @@ let password;
 let strings;
 let carouselImgs = null;
 
+
 shell.mkdir('-p', 'build/carouselImg');
+shell.mkdir('-p', 'carouselImg');
 shell.rm('-rf', 'build/carouselImg');
 shell.cp('-R', 'carouselImg/', 'build/carouselImg')
 
+if(!fs.existsSync(CAROUSEL_IMG_FILE_NAME)) {
+	writeObj([], CAROUSEL_IMG_FILE_NAME);
+}
 
-/*-----END----*/
+
+/*-----END setup----*/
 
 /*
 Starts server listening.

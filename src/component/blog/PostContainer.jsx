@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/app.scss';
-import { getLatest, getPostById } from '../../util/blog.js';
+import { getLatest, getPostById } from '../../util/data.js';
 import BlogHeader from './BlogHeader.jsx';
 import Header from '../Header.jsx';
 import Footer from '../Footer.jsx';

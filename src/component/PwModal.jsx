@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../css/app.scss';
 import { postData } from '../util/data.js';
 
-class PwModal extends Component {	
+class PwMod al extends Component {	
 	constructor(props) {
 		super(props);
 
@@ -22,7 +22,11 @@ class PwModal extends Component {
 	setAuthenticated = (val) => {
 		if(val === "true") {
 			this.props.setAuthenticated(this.state.password);
+			document.cookie = "notanother=cookie";
 			document.cookie = "authenticated=true";
+			console.log("adding cookie:" + th is.state.password);
+			document.cookie = "password="+ this.state.password;
+
 		}
 		else {
 			this.inputRef.current.classList.add("error");

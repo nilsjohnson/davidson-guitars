@@ -1,19 +1,57 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import { getString, deleteData} from '../util/data.js';
+import { getString, deleteData, moveCarouselImgLeft, moveCarouselImgRight } from '../util/data.js';
 
 class Thumbnail extends Component {
-    delete = (event) => {
-        deleteData('/api/carouselImgDelete', { data: this.props.addr })
-            .then(response => response.json())
-            .then(response => this.doDelete(response.result))
+    
+    /*
+    API call to delete image
+    */
+    delete = () => {
+        deleteData('/api/carouselImgDelete', { image: this.props.addr })
+            .then(response => this.removeThumbnail(response))
             .catch(err => console.log(err));
     }
 
-    doDelete = (result) => {
-        if(result === "Delete Success!"){
+    /*
+    removes image from view if successfully deleted
+    */
+    removeThumbnail = (response) => {
+        if(response.ok){
             this.props.remove(this.props.addr);
         }
+        else {
+            console.log("problem deleting image.")
+            console.log(response);
+        }
+    }
+
+    moveThumbnailLeft = () => {
+        let callback = this.props.shift;
+        let addr = this.props.addr;
+        moveCarouselImgLeft(this.props.addr)
+        .then(function(response){
+            if(response.ok) {
+                callback("LEFT", addr);
+            }
+            else {
+                console.log("no werk");
+            }
+        });
+    }
+
+    moveThumbnailRight = () => {
+        let callback = this.props.shift;
+        let addr = this.props.addr;
+        moveCarouselImgLeft(this.props.addr)
+        .then(function(response){
+            if(response.ok) {
+                callback("RIGHT", addr);
+            }
+            else {
+                console.log("no werk");
+            }
+        });
     }
 
 	render() {
@@ -21,8 +59,8 @@ class Thumbnail extends Component {
 			<div className="col-lg-3 col-md-4 col-sm-6">
     			<img className="img-fluid img-thumbnail" src={this.props.addr}/>
     			<button type="button" onClick={this.delete} className="btn btn-primary btn-lg btn-block">Delete</button>
-    			<button type="button" className="btn btn-secondary btn-lg btn-block">Left</button>
-    			<button type="button" className="btn btn-secondary btn-lg btn-block">Right</button>
+    			<button type="button" onClick={this.moveThumbnailLeft} className="btn btn-secondary btn-lg btn-block">Left</button>
+    			<button type="button" onClick={this.moveThumbnailRight} className="btn btn-secondary btn-lg btn-block">Right</button>
     		</div>     
             ); 
 	}

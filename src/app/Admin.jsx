@@ -7,23 +7,26 @@ import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
 import UploadForm from '../adminComponent/UploadForm.jsx';
+import { getCookie } from '../util/util.js';
 
 class Admin extends Component {
 	constructor(props) {
 		super(props);
 
-		// check if authenticated
-		let isAuthenticated = false;
-		if (document.cookie.split(';').filter(function(item) {
-			return item.indexOf('authenticated=true') >= 0
-		}).length) {
+		let isAuthenticated = getCookie("authenticated");
+		let pw = getCookie("password");
+
+		if(isAuthenticated === "true" && pw) {
 			isAuthenticated = true;
 		}
-
+		else {
+			isAuthenticated = false;
+			pw = null;
+		}
 
 		this.state = {
 			invalidPassword: false,
-			password: "",
+			password: pw,
 			authenticated: isAuthenticated,
 			name: getString("name"),
 			header: getString("header"),
@@ -167,6 +170,7 @@ class Admin extends Component {
 
 	logout = () => {
 		document.cookie = "authenticated=false";
+		document.cookie = "password=";
 		this.redirectHome();
 		alert("You are now logged out.");
 	}

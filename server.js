@@ -90,19 +90,89 @@ function deleteImage(image) {
 	if(!carouselImgs) {
 		getCarouselImages();
 	}
-	
-	let removed = false;	
 
-	for(let i = 0; i < carouselImgs.length; i++) {
+	let removed = false;
+
+	let i = 0;
+	while(i < carouselImgs.length) {
 		if(image === carouselImgs[i]) {
 			carouselImgs.splice(i, 1);
 			removed = true;
+			writeObj(carouselImgs, CAROUSEL_IMG_FILE_NAME);
+			break;
+		}
+		else {
+			i++;
 		}
 	}
+
 
 	if(!removed){
 		throw("image not found!");
 	}
+}
+
+
+/*
+moves an image
+*/
+function moveCarouselImage(direction, image) {
+	if(!carouselImgs) {
+		getCarouselImages();
+	}
+
+	let imageIndex = 0;
+	let found = false;
+
+	while(imageIndex < carouselImgs.length) {
+		if(carouselImgs[imageIndex] === image) {
+			found = true;
+			break;
+		}
+		else {
+			imageIndex++;
+		}
+	}
+
+	if(found) {
+
+		let rightIndex, leftIndex, temp;
+
+		if(imageIndex === 0) {
+			leftIndex = carouselImgs.length -1;
+			rightIndex = imageIndex + 1;
+		}
+		else if(imageIndex === carouselImgs.length - 1) {
+			rightIndex = 0;
+			leftIndex = imageIndex - 1;
+		}
+		else {
+			rightIndex = imageIndex + 1;
+			leftIndex = imageIndex -1;
+		}
+		
+
+		temp = carouselImgs[imageIndex];
+
+		if(direction === "RIGHT") {
+			carouselImgs[imageIndex] = carouselImgs[rightIndex];
+			carouselImgs[rightIndex] = temp;
+			console.log("image moved right"); 
+		}
+		if(direction === "LEFT") {
+			carouselImgs[imageIndex] = carouselImgs[leftIndex];
+			carouselImgs[leftIndex] = temp;
+			console.log("image moved left");
+		}
+
+		writeObj(carouselImgs, CAROUSEL_IMG_FILE_NAME);
+		
+	}
+	else {
+		console.log("Can't move image. Image not found");
+	}
+
+
 }
 
 /*
@@ -137,7 +207,7 @@ app.post('/api/updateStrings', function(req, res) {
 	let result;
 
 	if(req.body.password === getPassword()) {
-		writeStrings(req.body.data, STRING_FILE_NAME);
+		writeObj(req.body.data, STRING_FILE_NAME);
 		strings = req.body.data;
 		log("Sucessful post to '/api/updateStrings', " + new Date());
 		result = "Update Sucessful!";
@@ -181,10 +251,10 @@ app.post('/api/carouselUpload', function (req, res, next) {
 API to handle carousel image deletes
 */
 app.delete('/api/carouselImgDelete', function(req, res) {
-	console.log(req.body.data);
-	let result;
+	let result
+	console.log(req.body.image);
 	try {
-		deleteImage(req.body.data);
+		deleteImage(req.body.image);
 		result = "Delete Success!";
 	}
 	catch(err) {
@@ -194,6 +264,24 @@ app.delete('/api/carouselImgDelete', function(req, res) {
 	}
 
 	res.json({result: result});
+});
+
+app.put('/api/carouselImgs/move', function(req, res) {
+	console.log(req.body);
+	let result;
+
+	try {
+		moveCarouselImage(req.body.direction, req.body.image);
+		result = "Image moved."
+	}
+	catch(err) {
+		console.log(err);
+		result = err;
+		res.status(400);
+	}
+
+	res.json({result: result});
+
 });
 
 /*

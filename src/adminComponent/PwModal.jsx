@@ -23,6 +23,7 @@ class PwModal extends Component {
 		if(val === "true") {
 			this.props.setAuthenticated(this.state.password);
 			document.cookie = "authenticated=true";
+			document.cookie="password=" + this.state.password;
 		}
 		else {
 			this.inputRef.current.classList.add("error");

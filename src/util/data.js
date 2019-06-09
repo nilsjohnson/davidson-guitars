@@ -1,7 +1,7 @@
 /*
 For blogger API
 */
-const key = ????
+const key = "AIzaSyDyOzcQFTCjSmlT-nd5rbLXLca3glNkZhg"
 const userId = "3213900";
 
 /*
@@ -28,7 +28,8 @@ function fetchStrings(callback) {
 }
 
 /*
-gets a string by its name
+gets a string by its name. Always returns a string to prevent
+something from breaking.
 */
 function getString(key) {
 	if(strings != null && strings[key]) {
@@ -69,8 +70,8 @@ function postData(url = '', data = {}) {
         redirect: 'follow',
         referrer: 'no-referrer',
         body: JSON.stringify(data),
-    })
-    .then(response => response.json());
+    });
+   // .then(response => response.json());
 }
 
 /*
@@ -124,6 +125,24 @@ function deleteData(url = '', data = {}) {
     });
 }
 
+/*
+moves an image right or left
+*/
+function moveCarouselImgRight(img) {
+	return moveCarouselImg("RIGHT", img);
+}
+
+function moveCarouselImgLeft(img) {
+	return moveCarouselImg("LEFT", img);
+}
+
+function moveCarouselImg(direction, img) {
+	return fetch('/api/carouselImgs/move', {
+		method: 'PUT',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({ direction: direction, image: img})
+	});
+}
 
 
 export { getString, 
@@ -134,4 +153,6 @@ export { getString,
 		 getLatest,
 		 getPostById,
 		 uploadFile,
-		 deleteData };
+		 deleteData,
+		 moveCarouselImgRight,
+		 moveCarouselImgLeft };

@@ -59,7 +59,7 @@ let carouselImgs = null;
 shell.mkdir('-p', 'build/carouselImg'); // TODO, make const
 shell.mkdir('-p', 'carouselImg');
 shell.rm('-rf', 'build/carouselImg');
-shell.cp('-R', 'carouselImg/', 'build/carouselImg')
+shell.cp('-R', 'carouselImg/', 'build/carouselImg');
 
 if(!fs.existsSync(CAROUSEL_IMG_FILE_NAME)) {
 	writeObj([], CAROUSEL_IMG_FILE_NAME);
@@ -146,6 +146,8 @@ function deleteImage(image) {
 			carouselImgs.splice(i, 1);
 			removed = true;
 			writeObj(carouselImgs, CAROUSEL_IMG_FILE_NAME);
+			removeFile(__dirname + "/build" + image);
+			removeFile(__dirname + image);
 			break;
 		}
 		else {
@@ -211,6 +213,23 @@ function moveCarouselImage(direction, image) {
 	else {
 		console.log("Can't move image. Image not found");
 	}
+}
+
+/*
+Removes a file
+*/
+function removeFile(path)
+{
+	console.log("Path: ", path);
+	fs.unlink(path, (err) => {
+		if (err) {
+			console.log("Problem deleting file: " + err);
+		}
+		else {
+			console.log("delete sucess!");
+		}
+	});
+
 }
 
 /*

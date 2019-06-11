@@ -2,13 +2,13 @@
 var path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: './src/index.js',
   output: {
      path: path.resolve(__dirname, 'build'),
      filename: 'app.bundle.js'
   },
-/*  devtool: 'inline-source-map',*/
+  devtool: 'inline-source-map',
   module: {
     rules: [
       

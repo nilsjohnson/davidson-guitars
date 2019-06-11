@@ -1,7 +1,7 @@
 /*
 For blogger API
 */
-const key = "AIzaSyDyOzcQFTCjSmlT-nd5rbLXLca3glNkZhg"
+const key = ?????????????
 const userId = "6335479409620965157";
 
 /*

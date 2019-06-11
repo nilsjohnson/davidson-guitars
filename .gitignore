@@ -6,5 +6,10 @@
 password.txt
 log.txt
 blogger-key.txt
+connect.sh
+log.txt
+sendBuild.sh
+sendServer.sh
+
 
 

@@ -78,6 +78,8 @@ class UploadForm extends Component {
 				.then(response => this.addThumbnail(response.address))
 				.catch(error => console.error('Error:', error));
 		}
+
+		photos.value = "";
 	}
 
 	/*
@@ -121,12 +123,10 @@ class UploadForm extends Component {
 			if(direction === "RIGHT") {
 				carouselImgs[imageIndex] = carouselImgs[rightIndex];
 				carouselImgs[rightIndex] = temp;
-				console.log("image moved right"); 
 			}
 			if(direction === "LEFT") {
 				carouselImgs[imageIndex] = carouselImgs[leftIndex];
 				carouselImgs[leftIndex] = temp;
-				console.log("image moved left");
 			}
 
 			this.setState({
@@ -143,6 +143,13 @@ class UploadForm extends Component {
 	render() {
 		return(
 			 <div>
+			 	<h3>Add Carousel Images:</h3>
+			 	<div className="well"> 
+				    <input type="file" multiple />
+				    <button onClick={this.upload}>Upload</button>
+	    		</div>
+	    		<hr/>
+	    		<h3>Current Carousel Images:</h3>
 			 	<div className="row">
 			 		{this.state.thumbnails.map(item => <Thumbnail
       					key={item}
@@ -151,10 +158,6 @@ class UploadForm extends Component {
       					shift={this.shiftThumbnail}/>)
       				}
 			 	</div>
-				 <div> 
-				    <input type="file" multiple />
-				    <button onClick={this.upload}>Upload</button>
-	    		</div>
     		</div>     
             ); 
 	}

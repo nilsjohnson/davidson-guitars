@@ -17,6 +17,9 @@ class Navbar extends Component {
           <li className="nav-item">
              <a className={this.props.activePage === "blog" ? " active nav-link" : " nav-link" } href="/blog">The Shop</a>
           </li>
+          <li className="nav-item">
+             <a className={this.props.activePage === "store" ? " active nav-link" : " nav-link" } href="/store">Store</a>
+          </li>
         </ul>
       </nav>
     );

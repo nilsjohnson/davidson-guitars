@@ -47,9 +47,8 @@ class Landing extends Component {
 
     let message;
     if(getString("message") != "") {
-      message =  <div className="trans container"> <hr/>
+      message =  <div className="trans container well">
           <h4 className="text-center">{getString("message")}</h4>
-          <hr/>
         </div>;
     }
     return (
@@ -57,7 +56,7 @@ class Landing extends Component {
 
         {message}   
         
-        <div className="container trans well"> 
+        <div className="container trans well">
           <div className="row">
             <div className="col-md-6">
               <MyCarousel

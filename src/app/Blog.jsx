@@ -19,6 +19,8 @@ class Blog extends Component {
             activePage="blog"
           />
          {query ? <PostContainer postId={query}/> : <BlogSelector/>}
+
+         
         <Footer/>
       </div>
     );

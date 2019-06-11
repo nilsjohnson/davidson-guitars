@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
 import { postData } from '../util/data.js';
+import { setCookie } from '../util/util.js';
 
 class PwModal extends Component {	
 	constructor(props) {
@@ -20,12 +21,14 @@ class PwModal extends Component {
 	}
 
 	setAuthenticated = (val) => {
-		if(val === "true") {
+		if(val === true) {
 			this.props.setAuthenticated(this.state.password);
-			document.cookie = "authenticated=true";
-			document.cookie="password=" + this.state.password;
+			setCookie("authenticated", "true", 43200);
+			setCookie("password", this.state.password, 43200);
+
 		}
 		else {
+			console.log("value: " + val);
 			this.inputRef.current.classList.add("error");
 		}
 	}
@@ -33,9 +36,18 @@ class PwModal extends Component {
 	authenticate = (event) => {
 		event.preventDefault();
 		
+		let callback = this.setAuthenticated;
 		postData('/api/authenticate', {password: this.state.password})
-  			.then(data => this.setAuthenticated(data.status))
-  			.catch(error => console.error(error));
+			.then(function(response){
+				if(response.ok) {
+					callback(true);
+				}
+				else {
+					callback(false);
+				}
+			})
+			.catch(error => console.log(error));
+
 	}
 
 	render() {

@@ -2,7 +2,7 @@
 For blogger API
 */
 const key = "AIzaSyDyOzcQFTCjSmlT-nd5rbLXLca3glNkZhg"
-const userId = "3213900";
+const userId = "6335479409620965157";
 
 /*
 holds all the updatable strings used on website

@@ -13,7 +13,7 @@ class Home extends Component {
         <Header/>
         <Navbar
             activePage="home"
-          />
+          />  
         <Landing/>
         <Footer/>
       </div>

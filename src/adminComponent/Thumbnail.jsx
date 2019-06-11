@@ -35,7 +35,7 @@ class Thumbnail extends Component {
                 callback("LEFT", addr);
             }
             else {
-                console.log("no werk");
+                console.log("problem shifting image left");
             }
         });
     }
@@ -43,20 +43,20 @@ class Thumbnail extends Component {
     moveThumbnailRight = () => {
         let callback = this.props.shift;
         let addr = this.props.addr;
-        moveCarouselImgLeft(this.props.addr)
+        moveCarouselImgRight(this.props.addr)
         .then(function(response){
             if(response.ok) {
                 callback("RIGHT", addr);
             }
             else {
-                console.log("no werk");
+                console.log("problem shifting image right");
             }
         });
     }
 
 	render() {
 		return(
-			<div className="col-lg-3 col-md-4 col-sm-6">
+			<div className="col-lg-3 col-md-4 col-sm-6 well">
     			<img className="img-fluid img-thumbnail" src={this.props.addr}/>
     			<button type="button" onClick={this.delete} className="btn btn-primary btn-lg btn-block">Delete</button>
     			<button type="button" onClick={this.moveThumbnailLeft} className="btn btn-secondary btn-lg btn-block">Left</button>

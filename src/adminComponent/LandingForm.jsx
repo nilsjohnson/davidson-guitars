@@ -23,7 +23,10 @@ class LandingForm extends Component {
 			directions: getString("directions"),
 			services: getString("services"),
 			message: getString("message"),
-			reverbSlug: getString("reverbSlug")
+			reverbSlug: getString("reverbSlug"),
+			warrantyHeader: getString("warrantyHeader"),
+			storeHeader: getString("storeHeader"),
+			storeParagraph: getString("storeParagraph")
 		}
 	}
 
@@ -42,7 +45,10 @@ class LandingForm extends Component {
 			message,
 			directions,
 			services,
-			reverbSlug
+			reverbSlug,
+			warrantyHeader,
+			storeHeader,
+			storeParagraph
 		} = this.state;
 
 		let strings = {
@@ -59,7 +65,10 @@ class LandingForm extends Component {
 			message: message,
 			directions: directions,
 			services: services,
-			reverbSlug: reverbSlug
+			reverbSlug: reverbSlug,
+			warrantyHeader: warrantyHeader,
+			storeHeader: storeHeader,
+			storeParagraph: storeParagraph
 		}
 
 		//updateStrings(Strings, password);
@@ -150,6 +159,18 @@ class LandingForm extends Component {
 
 	updateReverbSlug = (event) => {
 		this.setState({reverbSlug: event.target.value});
+	}
+
+	updateWarrantyHeader = (event) => {
+		this.setState({warrantyHeader: event.target.value});
+	}
+
+	updateStoreHeader = (event) => {
+		this.setState({storeHeader: event.target.value})
+	}
+
+	updateStorePara = (event) => {
+		this.setState({storeParagraph: event.target.value})
 	}
 
 	redirectHome = () => {
@@ -296,6 +317,38 @@ class LandingForm extends Component {
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateMessage}
 	   				/>
+	  			</div>
+			</div>
+
+			<div className="form-group row">
+	  			<label className="col-sm-3 col-form-label">Warranty Banner Text:</label>
+	  			<div className="col-sm-9">
+	   				<input
+	   				 	defaultValue={getString("warrantyHeader")}
+	   				 	type="text" className="form-control" id="event-name"
+	   				 	onChange={this.updateWarrantyHeader}
+	   				/>
+	  			</div>
+			</div>
+
+			<div className="form-group row">
+	  			<label className="col-sm-3 col-form-label">Store Header:</label>
+	  			<div className="col-sm-9">
+	   				<input
+	   				 	defaultValue={getString("storeHeader")}
+	   				 	type="text" className="form-control" id="event-name"
+	   				 	onChange={this.updateStoreHeader}
+	   				/>
+	  			</div>
+			</div>
+
+			<div className="form-group row">
+	  			<label className="col-sm-3 col-form-label">Store Paragraph (html):</label>
+	  			<div className="col-sm-9">
+	   				 <textarea
+	   				 	defaultValue={getString("storeParagraph")}
+	   				 	type="text" className="form-control" id="event-name"
+	   				 	onChange={this.updateStorePara}/>
 	  			</div>
 			</div>
 

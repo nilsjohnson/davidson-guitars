@@ -56,7 +56,7 @@ class Admin extends Component {
 		document.cookie = "authenticated=false";
 		document.cookie = "password=";
 		this.redirectHome();
-		alert("You are now logged out. Please refresh page to see changes.");
+		alert("You are now logged out. You may have to refresh to see changes.");
 	}
 
 	render() {

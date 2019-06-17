@@ -7,7 +7,7 @@ class Header extends Component {
     return (
      <div className="header">
         <h1 className="text-center">{getString("name")}</h1>
-        <h3 className="text-center"> {getString("addr_1") + getString("addr_2") + " | " + getString("phoneNum")}</h3>
+        {/*<h3 className="text-center"> {getString("addr_1") + getString("addr_2") + " | " + getString("phoneNum")}</h3>*/}
       </div>
     );
   }

@@ -9,6 +9,7 @@ import BlogSelector from './blog/BlogSelector.jsx';
 import { getString, getCarouselImages } from '../util/data.js';
 import Services from './Services.jsx';
 import MyCarousel from './MyCarousel.jsx';
+import Brands from './Brands.jsx';
 
 
 class Landing extends Component {
@@ -58,12 +59,12 @@ class Landing extends Component {
         
         <div className="container trans well">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-xl-6 well">
               <MyCarousel
                 images={this.state.carouselImages}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-xl-6 well">
               <Blerb/>
               <Hours/>
               <Contact/>
@@ -84,6 +85,8 @@ class Landing extends Component {
                 <a href="/blog">See More</a>
             </div>
           </div>
+          <hr/>
+          <Brands/>
         </div>
 
         <div className="container trans well">

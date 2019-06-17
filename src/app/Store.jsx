@@ -6,6 +6,7 @@ import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
 import _RRR from '../util/util.js';
 import {getString} from '../util/data.js';
+import Reverb from '../component/Reverb.jsx';
 
 
 class Store extends Component {
@@ -21,11 +22,24 @@ class Store extends Component {
             activePage="store"
           />  
 
+        <div className="container well trans">
+          <h3 className="text-center">{getString("storeHeader")}</h3>
+          <br/>
+          <div className="row">
+            <div className="col-md-6">
+              <Reverb/>
+            </div>
+            <div className="col-md-6 line-left">
+              {getString("storeParagraph")} 
+            </div>
+          </div>
+        </div>
+
         <div className="container trans well">
-         <div
+          <div
             data-reverb-embed-listings
             data-reverb-search-shop={getString("reverbSlug")}
-            data-reverb-search-per-page="50"
+            data-reverb-search-per-page="12"
             data-reverb-currency="USD">
           </div>
         </div>

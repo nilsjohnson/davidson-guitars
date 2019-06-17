@@ -8,17 +8,18 @@ class Contact extends Component {
 			<div> 
 				 <h3 className="text-center">Directions/Contact</h3>
 				 <div className="row">
-				 	<div className="col-6">
+				 	<div className="col-xl-6">
 				 	 	<strong>
 					 	 	<address>
-					 	 		<a href="https://goo.gl/maps/DmffrAHF7zdHwhJX8" target="_blank">
-		                 			{getString("addr_1")}<br/>
-		                			{getString("addr_2")}<br/>
-		                		</a>
+		                 		{getString("addr_1")}<br/>
+		                		{getString("addr_2")}<br/>
+		                		<form action="https://goo.gl/maps/DmffrAHF7zdHwhJX8" target="_blank">
+								    <input type="submit" value="Map" />
+								</form>
 	                		</address>
 	                	</strong>
 				 	</div>
-				 	<div className="col-6">
+				 	<div className="col-xl-6">
 				 		<strong>
 					 		<address>
 	                  			<a href="mailto:owen@davidsonguitars.com">{getString("email")}</a><br/> 

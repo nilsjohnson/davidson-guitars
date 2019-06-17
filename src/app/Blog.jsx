@@ -18,9 +18,9 @@ class Blog extends Component {
         <Navbar
             activePage="blog"
           />
-         {query ? <PostContainer postId={query}/> : <BlogSelector/>}
-
-         
+        <div className="trans well container">  
+          {query ? <PostContainer postId={query}/> : <BlogSelector/>}
+        </div> 
         <Footer/>
       </div>
     );

@@ -343,7 +343,7 @@ class LandingForm extends Component {
 			</div>
 
 			<div className="form-group row">
-	  			<label className="col-sm-3 col-form-label">Store Paragraph (html):</label>
+	  			<label className="col-sm-3 col-form-label">Store Paragraph:</label>
 	  			<div className="col-sm-9">
 	   				 <textarea
 	   				 	defaultValue={getString("storeParagraph")}

@@ -43,7 +43,7 @@ class PostContainer extends Component {
  	render() {
     	return (
       	<div>
-   			<div className="trans container well" id="post-container">
+   			<div id="post-container">
    				<h2 className="text-center">
    					{this.state.title}
    				</h2>

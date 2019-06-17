@@ -30,7 +30,9 @@ class Store extends Component {
               <Reverb/>
             </div>
             <div className="col-md-6 line-left">
-              {getString("storeParagraph")} 
+              <p>
+                {getString("storeParagraph")} 
+              </p>  
             </div>
           </div>
         </div>

@@ -75,18 +75,23 @@ class Landing extends Component {
         <div className="container trans well">
           <h1 className="text-center">The Shop</h1>
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6" id="landing-left">
               <Services/>
+              <hr/>
+              <div className="brands-container">
+                <div className="vertical-center">
+                  <Brands/>
+                </div>
+              </div>  
+              <hr/>
             </div>
             <div className="col-md-6 line-left">
               <BlogSelector
-                maxResults={4}
+                maxResults={2}
                 />
                 <a href="/blog">See More</a>
             </div>
           </div>
-          <hr/>
-          <Brands/>
         </div>
 
         <div className="container trans well">

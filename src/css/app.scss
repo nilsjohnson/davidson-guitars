@@ -106,5 +106,27 @@ div {
 }
 
 #logo {
-  margin: 1em;
+  margin: 1rem;
+}
+
+.blog-thumb {
+  max-width: 45rem;
+}
+
+
+#landing-left{
+  overflow: hidden;
+  position: relative;
+}
+
+.brands-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.vertical-center {
+   padding-top: 25%;
+   padding-bottom: 25%;
 }

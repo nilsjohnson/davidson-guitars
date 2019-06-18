@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../util/data.js';
+import {getResource} from '../util/data.js';
 
 class Reverb extends Component {
   render() {
@@ -8,7 +8,7 @@ class Reverb extends Component {
       <div>
         <div className="row">
           <div className="mx-auto d-block">
-            <a href={"https://reverb.com/shop/" + getString("reverbSlug")}>
+            <a href={"https://reverb.com/shop/" + getResource("reverbSlug")}>
               <img 
                 alt="Shop My Store on Reverb" 
                 src="https://static.reverb-assets.com/assets/shops/buttons/215x65-black-en-94305bd2b54772f44e046db82a7837d2.png"
@@ -17,7 +17,7 @@ class Reverb extends Component {
           </div> 
         </div>
         <br/>
-        <h4 className="text-center">{getString("reverbHeader")}</h4> 
+        <h4 className="text-center">{getResource("reverbHeader")}</h4> 
       </div>
       );
   }

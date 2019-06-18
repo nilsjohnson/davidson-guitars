@@ -5,7 +5,7 @@ import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';
 import Footer from '../component/Footer.jsx';
 import _RRR from '../util/util.js';
-import {getString} from '../util/data.js';
+import {getResource} from '../util/data.js';
 import Reverb from '../component/Reverb.jsx';
 
 
@@ -23,7 +23,7 @@ class Store extends Component {
           />  
 
         <div className="container well trans">
-          <h3 className="text-center">{getString("storeHeader")}</h3>
+          <h3 className="text-center">{getResource("storeHeader")}</h3>
           <br/>
           <div className="row">
             <div className="col-md-6">
@@ -31,7 +31,7 @@ class Store extends Component {
             </div>
             <div className="col-md-6 line-left">
               <p>
-                {getString("storeParagraph")} 
+                {getResource("storeParagraph")} 
               </p>  
             </div>
           </div>
@@ -40,7 +40,7 @@ class Store extends Component {
         <div className="container trans well">
           <div
             data-reverb-embed-listings
-            data-reverb-search-shop={getString("reverbSlug")}
+            data-reverb-search-shop={getResource("reverbSlug")}
             data-reverb-search-per-page="12"
             data-reverb-currency="USD">
           </div>

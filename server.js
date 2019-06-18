@@ -47,7 +47,8 @@ if(mode != DEV) {
 }
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'build'), { index : false }));
+app.use(express.static(path.join(__dirname, 'build'), { index : false })); // index : false is to allow request for the webroot to get caught by 'app.get('/*', function(req, res)', allowing http to https redirects
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(busboy());
 
 // global variables
@@ -55,14 +56,16 @@ let password;
 let strings;
 let carouselImgs = null;
 
-// sets up files
-shell.mkdir('-p', 'build/carouselImg'); // TODO, make const
-shell.mkdir('-p', 'carouselImg');
-shell.rm('-rf', 'build/carouselImg');
-shell.cp('-R', 'carouselImg/', 'build/carouselImg');
+// make directory where carousel images belong, if it doesnt exist
+shell.mkdir('-p', 'public/carouselImg');
 
+// make a file to hold carousel images if it doesnt exist
 if(!fs.existsSync(CAROUSEL_IMG_FILE_NAME)) {
 	writeObj([], CAROUSEL_IMG_FILE_NAME);
+}
+// make file to hold strings if it doesnt exist
+if(!fs.existsSync(STRING_FILE_NAME)) {
+	writeObj([], STRING_FILE_NAME);
 }
 
 /*
@@ -287,22 +290,22 @@ app.post('/api/carouselUpload', function (req, res, next) {
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
 
-        let src = __dirname + '/carouselImg/' + filename;
-        let dest = __dirname + '/build/carouselImg/' + filename;
+        let src = '/tmp/' + filename;
+        let dest = __dirname + '/public/carouselImg/' + filename;
         let finalAddr = '/carouselImg/' + filename;
 
         let i = 2;
         while(getCarouselImages().includes(finalAddr)) {
         	console.log("exists");
         	filename = "(" + i + ")" + filename;
-        	src = __dirname + '/carouselImg/' + filename;
-        	dest = __dirname + '/build/carouselImg/' + filename;
+        	src = '/tmp/' + filename;
+        	dest = __dirname + '/public/carouselImg/' + filename;
         	finalAddr = '/carouselImg/' + filename;
         	i++;
         }
 
         //Path where image will be uploaded
-        fstream = fs.createWriteStream(__dirname + '/carouselImg/' + filename);
+        fstream = fs.createWriteStream(src);
         file.pipe(fstream);
         fstream.on('close', function () {    
             console.log("'" + filename + "' uploaded, now resizing...");
@@ -310,7 +313,7 @@ app.post('/api/carouselUpload', function (req, res, next) {
 			resize(src, dest, CAROUSEL_IMG_WIDTH, CAROUSEL_IMG_HIGHT, function(destination){
 				res.json({address: finalAddr})
 				addCarouselImage(finalAddr);
-				shell.cp(dest, src); // this is to have the same size pictures outside the build directory
+				shell.rm(src); // delete temporary file
 			});           
         });
     });
@@ -362,7 +365,7 @@ app.get('/*', function(req, res) {
     	res.redirect("https://" + req.headers.host + req.url);
   	}
   	else {
-  		res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  		res.sendFile(path.join(__dirname, 'public', 'index.html'));
   	}
 });
 
@@ -384,9 +387,9 @@ function resize(src, dest, width, height, callback) {
 	});
 
 	resizer.on('close', (code) => {
-	 	console.log(`child process exited with code ${code}.`);
+	 	//console.log(`child process exited with code ${code}.`);
 	  	if(code === 0) {
-	  		console.log("Image was resized.");
+	  		//console.log("Image was resized.");
 	  		callback(dest)
 	  	}
 	  	else {

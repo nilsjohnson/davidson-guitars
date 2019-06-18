@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../util/data.js';
+import {getResource} from '../util/data.js';
 
 
 class Services extends Component {
@@ -11,7 +11,7 @@ class Services extends Component {
   	render() {
   		return (
   			<div
-  				dangerouslySetInnerHTML={{__html: getString("services")}}>
+  				dangerouslySetInnerHTML={{__html: getResource("services")}}>
   			</div>
   			);
   }

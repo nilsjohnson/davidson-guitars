@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import '../css/app.scss';
-import {getString, postData } from '../util/data.js';
+import {getResource, postData } from '../util/data.js';
 import { Link } from 'react-router-dom';
 
 
@@ -10,23 +10,23 @@ class LandingForm extends Component {
 		super(props);
 
 		this.state = {
-			name: getString("name"),
-			header: getString("header"),
-			description: getString("description"),
-			hours: getString("hours"),
-			email: getString("email"),
-			phoneNum: getString("phoneNum"),
-			addr_1: getString("addr_1"),
-			addr_2: getString("addr_2"),
-			footer: getString("footer"),
-			reverbHeader: getString("reverbHeader"),
-			directions: getString("directions"),
-			services: getString("services"),
-			message: getString("message"),
-			reverbSlug: getString("reverbSlug"),
-			warrantyHeader: getString("warrantyHeader"),
-			storeHeader: getString("storeHeader"),
-			storeParagraph: getString("storeParagraph")
+			name: getResource("name"),
+			header: getResource("header"),
+			description: getResource("description"),
+			hours: getResource("hours"),
+			email: getResource("email"),
+			phoneNum: getResource("phoneNum"),
+			addr_1: getResource("addr_1"),
+			addr_2: getResource("addr_2"),
+			footer: getResource("footer"),
+			reverbHeader: getResource("reverbHeader"),
+			directions: getResource("directions"),
+			services: getResource("services"),
+			message: getResource("message"),
+			reverbSlug: getResource("reverbSlug"),
+			warrantyHeader: getResource("warrantyHeader"),
+			storeHeader: getResource("storeHeader"),
+			storeParagraph: getResource("storeParagraph")
 		}
 	}
 
@@ -192,7 +192,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Name:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("name")}
+	   				 	defaultValue={getResource("name")}
 	   				 	onChange={this.updateName}
 	   				 	type="text" className="form-control" id="event-name"/>
 	  			</div>
@@ -202,7 +202,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Landing Header:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("header")}
+	   				 	defaultValue={getResource("header")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateHeader}/>
 	  			</div>
@@ -212,7 +212,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Landing Description:</label>
 	  			<div className="col-sm-9">
 	   				 <textarea
-	   				 	defaultValue={getString("description")}
+	   				 	defaultValue={getResource("description")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateDesription}/>
 	  			</div>
@@ -222,7 +222,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Hours</label>
 	  			<div className="col-sm-9">
 	   				 <textarea
-	   				 	defaultValue={getString("hours").toString().replace(/,/g, "\n")}
+	   				 	defaultValue={getResource("hours").toString().replace(/,/g, "\n")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateHours}/>
 	  			</div>
@@ -232,7 +232,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Phone Number:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("phoneNum")}
+	   				 	defaultValue={getResource("phoneNum")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updatePhoneNum}/>
 	  			</div>
@@ -242,7 +242,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Address Line 1:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("addr_1")}
+	   				 	defaultValue={getResource("addr_1")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateAddr_1}/>
 	  			</div>
@@ -252,7 +252,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Address Line 2:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("addr_2")}
+	   				 	defaultValue={getResource("addr_2")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateAddr_2}/>
 	  			</div>
@@ -262,7 +262,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Footer:</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("footer")}
+	   				 	defaultValue={getResource("footer")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateFooter}/>
 	  			</div>
@@ -272,7 +272,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Reverb Header</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("reverbHeader")}
+	   				 	defaultValue={getResource("reverbHeader")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateReverbHeader}/>
 	  			</div>
@@ -282,7 +282,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Reverb "Slug":</label>
 	  			<div className="col-sm-9">
 	   				 <input
-	   				 	defaultValue={getString("reverbSlug")}
+	   				 	defaultValue={getResource("reverbSlug")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateReverbSlug}/>
 	  			</div>
@@ -292,7 +292,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Directions:</label>
 	  			<div className="col-sm-9">
 	   				<input
-	   				 	defaultValue={getString("directions")}
+	   				 	defaultValue={getResource("directions")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateDirections}
 	   				/>
@@ -303,7 +303,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Services (html):</label>
 	  			<div className="col-sm-9">
 	   				 <textarea
-	   				 	defaultValue={getString("services")}
+	   				 	defaultValue={getResource("services")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateServices}/>
 	  			</div>
@@ -313,7 +313,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Message:</label>
 	  			<div className="col-sm-9">
 	   				<input
-	   				 	defaultValue={getString("message")}
+	   				 	defaultValue={getResource("message")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateMessage}
 	   				/>
@@ -324,7 +324,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Warranty Banner Text:</label>
 	  			<div className="col-sm-9">
 	   				<input
-	   				 	defaultValue={getString("warrantyHeader")}
+	   				 	defaultValue={getResource("warrantyHeader")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateWarrantyHeader}
 	   				/>
@@ -335,7 +335,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Store Header:</label>
 	  			<div className="col-sm-9">
 	   				<input
-	   				 	defaultValue={getString("storeHeader")}
+	   				 	defaultValue={getResource("storeHeader")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateStoreHeader}
 	   				/>
@@ -346,7 +346,7 @@ class LandingForm extends Component {
 	  			<label className="col-sm-3 col-form-label">Store Paragraph:</label>
 	  			<div className="col-sm-9">
 	   				 <textarea
-	   				 	defaultValue={getString("storeParagraph")}
+	   				 	defaultValue={getResource("storeParagraph")}
 	   				 	type="text" className="form-control" id="event-name"
 	   				 	onChange={this.updateStorePara}/>
 	  			</div>

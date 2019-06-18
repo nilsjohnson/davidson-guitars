@@ -13,7 +13,7 @@ let strings = null;
 fetches the strings from the server.
 callback: gets called after string retrieval. See index.js
 */
-function fetchStrings(callback) {
+function fetchResources(callback) {
 	fetch(`/api/strings`).then(function(response){
 		if(response.ok) {
 			response.json().then(data => {
@@ -28,15 +28,15 @@ function fetchStrings(callback) {
 }
 
 /*
-gets a string by its name. Always returns a string to prevent
-something from breaking.
+gets a resource by its name.
+returns empty array if not found.
 */
-function getString(key) {
+function getResource(key) {
 	if(strings != null && strings[key]) {
 		return strings[key];
 	}
 	else {
-		return "";
+		return [];
 	}	
 }
 
@@ -145,8 +145,8 @@ function moveCarouselImg(direction, img) {
 }
 
 
-export { getString, 
-		 fetchStrings,
+export { getResource, 
+		 fetchResources,
 		 updateStrings,
 		 postData,
 		 getCarouselImages,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../util/data.js';
+import {getResource} from '../util/data.js';
 
 class Contact extends Component {		
 	render() {
@@ -11,8 +11,8 @@ class Contact extends Component {
 				 	<div className="col-xl-6">
 				 	 	<strong>
 					 	 	<address>
-		                 		{getString("addr_1")}<br/>
-		                		{getString("addr_2")}<br/>
+		                 		{getResource("addr_1")}<br/>
+		                		{getResource("addr_2")}<br/>
 		                		<form action="https://goo.gl/maps/DmffrAHF7zdHwhJX8" target="_blank">
 								    <input type="submit" value="Map" />
 								</form>
@@ -22,15 +22,15 @@ class Contact extends Component {
 				 	<div className="col-xl-6">
 				 		<strong>
 					 		<address>
-	                  			<a href="mailto:owen@davidsonguitars.com">{getString("email")}</a><br/> 
-	                  			{getString("phoneNum")}<br/>
+	                  			<a href="mailto:owen@davidsonguitars.com">{getResource("email")}</a><br/> 
+	                  			{getResource("phoneNum")}<br/>
 	                		</address>
                 		</strong>
 				 	</div>
 				
                 </div>
                 <p>
-                	{getString("directions")}
+                	{getResource("directions")}
                 </p>
 			</div>); 
 	}

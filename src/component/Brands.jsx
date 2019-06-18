@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import {getString} from '../util/data.js';
+import {getResource} from '../util/data.js';
 import Martin from'../img/martin.png';
 import Fender from'../img/fender.png';
 
@@ -15,7 +15,7 @@ class Brands extends Component {
             </div>  
           </div>
           <br/>
-          <h4 className="text-center">{getString("warrantyHeader")}</h4> 
+          <h4 className="text-center">{getResource("warrantyHeader")}</h4> 
         </div>
       );
   }

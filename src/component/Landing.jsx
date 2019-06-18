@@ -4,13 +4,11 @@ import Hours from './Hours.jsx';
 import Contact from './Contact.jsx';
 import Blerb from './Blerb.jsx';
 import Reverb from './Reverb.jsx';
-import Facebook from './Facebook.jsx';
 import BlogSelector from './blog/BlogSelector.jsx';
-import { getString, getCarouselImages } from '../util/data.js';
+import { getResource, getCarouselImages } from '../util/data.js';
 import Services from './Services.jsx';
 import MyCarousel from './MyCarousel.jsx';
 import Brands from './Brands.jsx';
-
 
 class Landing extends Component {
   constructor(props) {
@@ -47,9 +45,9 @@ class Landing extends Component {
   render() {
 
     let message;
-    if(getString("message") != "") {
+    if(getResource("message") != "") {
       message =  <div className="trans container well">
-          <h4 className="text-center">{getString("message")}</h4>
+          <h4 className="text-center">{getResource("message")}</h4>
         </div>;
     }
     return (

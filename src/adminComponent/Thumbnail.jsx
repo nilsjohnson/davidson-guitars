@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../css/app.scss';
-import { getString, deleteData, moveCarouselImgLeft, moveCarouselImgRight } from '../util/data.js';
+import { getResource, deleteData, moveCarouselImgLeft, moveCarouselImgRight } from '../util/data.js';
 
 class Thumbnail extends Component {
     

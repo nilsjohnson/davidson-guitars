@@ -5,7 +5,7 @@ import Admin from './app/Admin.jsx';
 import Blog from './app/Blog.jsx';
 import Store from './app/Store.jsx';
 import { BrowserRouter, Route } from 'react-router-dom'
-import {getString, fetchStrings} from './util/data.js';
+import {getResource, fetchResources} from './util/data.js';
 
 let render = function() {
 	ReactDOM.render((
@@ -20,6 +20,6 @@ let render = function() {
 	), document.getElementById('root'));
 }
 
-fetchStrings(render);
+fetchResources(render);
 
 

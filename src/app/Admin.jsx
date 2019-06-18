@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import '../css/app.scss';
-import {getString, updateStrings, postData } from '../util/data.js';
+import {getResource, updateStrings, postData } from '../util/data.js';
 import PwModal from '../adminComponent/PwModal.jsx';
 import Navbar from '../component/Navbar.jsx';
 import Header from '../component/Header.jsx';

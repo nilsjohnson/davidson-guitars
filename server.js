@@ -48,7 +48,7 @@ if(mode != DEV) {
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build'), { index : false })); // index : false is to allow request for the webroot to get caught by 'app.get('/*', function(req, res)', allowing http to https redirects
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), { index : false }));
 app.use(busboy());
 
 // global variables

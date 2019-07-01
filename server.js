@@ -361,6 +361,10 @@ app.put('/api/carouselImgs/move', function(req, res) {
 Redirects all other requests to be handled by client.
 */
 app.get('/*', function(req, res) {
+	if(!req.headers.host.startsWith("www")) {
+		res.redirect("https://www." + req.headers.host + req.url);
+	}
+
 	if(!req.secure && mode != DEV){
     	res.redirect("https://" + req.headers.host + req.url);
   	}

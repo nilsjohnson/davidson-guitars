@@ -17,7 +17,9 @@ class Reverb extends Component {
           </div> 
         </div>
         <br/>
-        <h4 className="text-center">{getResource("reverbHeader")}</h4> 
+        <a href={"https://reverb.com/shop/" + getResource("reverbSlug")}>
+          <h4 className="text-center">{getResource("reverbHeader")}</h4> 
+        </a>
       </div>
       );
   }

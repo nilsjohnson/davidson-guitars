@@ -3,15 +3,15 @@ If running in production on server, pass 'prudction' as an argument:
 	$ node server.js production
 This will allow listening for https requests, otherwise it will just do http.	
 */
-const DEV = "DevMode, wahoo!";
+const PRODUCTION = "A unique String! :)";
 let mode;
 
 if (process.argv.length > 2 && process.argv[2] === "production") {
 	console.log("Server running in prodcution. Will listen for https requests.");
+	mode = PRODUCTION;
 }
 else {
 	console.log("Server running in DEV mode. Will not listen for https requests");
-	mode = DEV;
 }
 
 const express = require('express');
@@ -37,7 +37,7 @@ let FULL_CHAIN;
 let PRIVATE_KEY;
 let OPTIONS = {};
 
-if (mode != DEV) {
+if (mode == PRODUCTION) {
 	FULL_CHAIN = '/etc/letsencrypt/live/www.owendavidsonguitars.com/fullchain.pem';
 	PRIVATE_KEY = '/etc/letsencrypt/live/www.owendavidsonguitars.com/privkey.pem';
 	OPTIONS = {
@@ -360,17 +360,20 @@ app.put('/api/carouselImgs/move', function (req, res) {
 Redirects all other requests to be handled by client.
 */
 app.get('/*', function (req, res) {
-	if (!req.headers.host.startsWith("www")) {
-		res.redirect("https://www." + req.headers.host + req.url);
-	}
-	else {
-		if (!req.secure && mode != DEV) {
-			res.redirect("https://" + req.headers.host + req.url);
+		if (mode == PRODUCTION) {
+			if(!req.secure){
+				res.redirect("https://" + req.headers.host + req.url);
+			}
+			else if(!req.headers.host.startsWith("www")){
+				res.redirect("https://www." + req.headers.host + req.url);
+			}
+			else {
+				res.sendFile(path.join(__dirname, 'public', 'index.html'));
+			}
 		}
 		else {
 			res.sendFile(path.join(__dirname, 'public', 'index.html'));
 		}
-	}
 });
 
 /*
@@ -424,7 +427,7 @@ app.listen(HTTP_PORT_NUM, function () {
 /*
 Starts listening for https requests
 */
-if (mode != DEV) {
+if (mode == PRODUCTION) {
 	https.createServer(OPTIONS, app).listen(HTTPS_PORT_NUM);
 }
 
